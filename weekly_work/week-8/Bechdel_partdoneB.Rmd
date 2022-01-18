@@ -1,0 +1,192 @@
+---
+title: "Bechdel Test"
+author: "yourname"
+date: "10/19/2021"
+output: html_document
+---
+
+```{r setup, message = FALSE, warning = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+
+b <- read.csv("bechdel87.csv")
+
+```
+
+```{r lookatdata}
+tibble(b)
+names(b)
+```
+
+
+### Graphs of categorical variables:
+
+####  (Decade is also numeric, but we're treating it like a categorical variable just for this graph)
+
+```{r categorical}
+ggplot(data = b,
+       mapping = aes(x = Decade, fill = as.factor(Decade))) + 
+  geom_bar()
+
+ggplot(data = b,
+       mapping = aes(x = Btest, fill = Btest)) + 
+  geom_bar()
+
+#  To find percentage:
+t <- table(b$Btest)
+prop.table(t)
+
+#  Repeat for Btest5:
+ggplot(data = b,
+       mapping = aes(x = Btest5, fill = Btest5)) + 
+  geom_bar()
+
+#  To find percentage:
+t <- table(b$Btest5)
+prop.table(t)
+
+
+
+```
+
+###  Quantitative variables
+
+####  Film budget (in 2013 dollars)
+
+Shape:  Very skewed to the right
+
+```{r budget, message = FALSE, warning = FALSE}
+ggplot(data = b,
+       mapping = aes(x = budget13)) +
+  geom_histogram(fill = 'darkgreen', color = 'gray')
+```
+
+#### Domestic gross income from film (just money made in U.S.) (in 2013 dollars)
+
+Shape:  Even more skewed to the right
+
+```{r domgross, message = FALSE, warning = FALSE}
+ggplot(data = b,
+       mapping = aes(x = domgross13)) +
+  geom_histogram(fill = 'darkgreen', color = 'gray')
+```
+
+
+#### International gross income (includes domestic income, too) (in 2013 dollars)
+
+Shape:  VERY skewed to the right
+
+```{r intgross, message = FALSE, warning = FALSE}
+ggplot(data = b,
+       mapping = aes(x = intgross13)) +
+  geom_histogram(fill = 'darkgreen', color = 'gray')
+```
+
+#### Crowd-sourced movie ratings.
+#### Scale is from 1 (worst) to 5 (best)
+
+Shape:  Skewed to left
+
+```{r ratings, message = FALSE, warning = FALSE}
+ggplot(data = b,
+       mapping = aes(x = averating)) +
+  geom_histogram(fill = 'aquamarine', color = 'blue')
+```
+
+### Relationships among variables:
+
+#### Bechdel Test by Decade
+
+```{r btestdecade}
+
+#  Bar graph,  with fill by Btest
+ggplot(data = b,
+       mapping = aes(x = Decade, fill = Btest)) +
+  geom_bar()
+
+ggplot(data = b,
+       mapping = aes(x = Decade, fill = Btest)) +
+  geom_bar(position = 'fill')
+```
+
+#### Average Rating by whether film passed the test:
+
+```{r ratingbybt, messsage = FALSE, warning = FALSE}
+
+#  density by Btest, using facets
+ggplot(data = b,
+       mapping = aes(x = averating, fill = Btest)) +
+  geom_density() +
+  facet_grid( Btest ~ .)
+
+#  boxplots by Btest
+
+ggplot(data = b,
+       mapping = aes(x = averating, fill = Btest)) +
+  geom_boxplot()
+
+#  Find the mean, sd, median for each group
+
+```
+
+#### Budget by whether film passed the test:
+
+Probably best to focus on median instead of mean.  When data is very skewed, the mean is pulled in the direction of the tail.
+
+```{r budgbybt, message = FALSE, warning = FALSE}
+
+
+```
+
+#### Domestic Gross by whether film passed the test:
+
+
+```{r domgrossbybt, message = FALSE, warning = FALSE}
+
+```
+
+####  Relationship between budget and gross earnings?
+
+If films that pass the Bechdel test have lower earnings, is this likely related to passing the test (having women in them)?   These same films had lower budgets.  Do films with lower budgets tend to make less money than films with higher budgets?   What is your intuition? 
+
+```{r budgetearn, warning = FALSE, message = FALSE}
+
+
+```
+
+### Create a new variable that is the percentage profit:
+
+Some suggest that an explanation for the low percentage of films passing the test is that most writers, directors, and producers are men.  It has also been suggested that films with more women simply do not make as much money.  We’ve seen that, indeed, films that pass the test have lower gross earnings.   
+
+However, this could be simply because they are lower budget films, on average, and lower budget films tend to make less money.  Can we somehow ‘correct’ for budget in looking at profit?  Here’s one way:  
+
+
+```{r percprofit}
+# b2 <- b %>% 
+#   mutate(domprofit13 = 
+#            100*(domgross13 - budget13)/budget13)
+
+b%>%group_by(Btest)%>%filter(!is.na(averating))%>%
+  summarize(meanrating = mean(averating),
+            sdrating = sd(averating),
+            medrating=median(averating))
+
+b2 <- b%>%
+  mutate()
+```
+
+### Percent Profit by Btest:
+
+
+```{r ppbybt}
+
+```
+
+###  Conclusion: 
+
+Do films that pass the Bechdel test have a higher or lower percentage profit, compared to films that do not?  What do you think is the reason for the low percentage of films that pass the test? 
+
+### Followup: 
+
+To follow up, please read the article “The Dollar-And-Cents Case Against Hollywood’s Exclusion of Women,” on fivethirtyeight.com.  <https://fivethirtyeight.com/features/the-dollar-and-cents-case-against-hollywoods-exclusion-of-women/>

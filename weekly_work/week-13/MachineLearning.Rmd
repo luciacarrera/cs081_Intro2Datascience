@@ -1,0 +1,137 @@
+---
+title: "Machine Learning Methods"
+author: "Sheila Weaver"
+date: "11/30/2021"
+output: html_document
+---
+
+###  Classification and Clustering
+
+```{r setup, message=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+#  Install C50
+
+# library(C50)
+library(tidyverse)
+```
+
+####  First, graph the iris data here:
+
+```{r iris}
+
+names(iris)   # to see what is in the data set
+
+#  Try this plot.  Then change it to create the other two.
+
+ggplot(data = iris, 
+mapping = aes(x = Sepal.Width, y = Petal.Length, 
+color=Species)) +
+  geom_point()
+
+ggplot(data = iris, 
+mapping = aes(x = Petal.Length, y = Petal.Width, 
+color=Species)) +
+  geom_point()
+
+ggplot(data = iris, 
+mapping = aes(x = Sepal.Length, y = Sepal.Width, 
+color=Species)) +
+  geom_point()
+
+
+```
+
+### Clustering
+
+First, we'll take some data that does not have any categories.  We'll use the data mtcars, which is a stored data frame in R.  Take a look at the data:
+
+```{r lookatmtcars}
+summary(mtcars)
+tibble(mtcars)
+
+#  Note that the data frame has rownames.   Do a View(mtcars) in the console (not in this script) to look at them.
+```
+
+####  Now we'll find Clusters, using Hierarchical Clustering:
+
+```{r cluster}
+
+#  Create the distance matrix – how far apart each object is from others
+d <- dist(mtcars, method = "euclidean") 
+
+#  Interpret the distances and choose some good clusters
+fit <- hclust(d, method="ward.D") 
+
+plot(fit)
+```
+
+####  Try finding 5 clusters of cars:
+
+```{r cluster5}
+# Create and display the ‘dendogram’ – a tree graph of the clusters:
+plot(fit)
+
+# Use the tree graph results to cut the tree into 5 clusters:
+groups <- cutree( fit, k = 5)
+
+#  Print to see which cluster each car is in:
+groups
+
+# draw red borders around the 5 clusters on the dendogram 
+rect.hclust(fit, k = 5, border = 'red')
+
+```
+
+####  Redo with 3 clusters of cars:
+
+```{r cluster3}
+# Make the tree again:
+plot(fit)
+
+# Use the tree graph results to cut the tree into 3 clusters:
+groups <- cutree( fit, k = 3)
+
+#  Print to see which cluster each car is in:
+groups
+
+# draw red borders around the 3 clusters on the dendogram 
+rect.hclust(fit, k = 3, border = 'red')
+
+```
+
+###  Classification
+
+To do Classification, you need data that has groups already (we say it is 'labeled' data)
+
+#### Read in used car data
+
+This data is divided into training rows (1200 cars), and test rows (528 cars).  We will build the model using the training data, then test it using the test data.
+
+Our goal is to predict the acceptability of the used car, based on some possible predictors.
+
+```{r cardata}
+train <- read.csv("CarTrainingData.csv", stringsAsFactors = TRUE)
+test <- read.csv("CarTestData.csv", stringsAsFactors = TRUE)
+
+summary(train)
+summary(test)
+
+```
+
+#### Decision Rules 
+
+Build a model that is a set of rules that will decide if the car is acceptable or not.  We'll use just the training data. We'll do a summary of the model to see what the rules are.
+
+```{r train}
+
+```
+
+#### Test the model
+
+To see how well the model really works, we try it on different data:  the test data.
+
+```{r test}
+
+```
+

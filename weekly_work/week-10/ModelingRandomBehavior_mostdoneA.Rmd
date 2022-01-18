@@ -1,0 +1,83 @@
+---
+title: "Modeling Random Behavior"
+author: "yourname"
+date: "11/4/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Modeling Coin Flips
+
+#### One coin:
+
+```{r onecoin}
+#  Having R flip one coin:
+Trial <- rbinom(n = 1, size = 1, prob = .5)
+ifelse(Trial == 1, 'Heads','Tails')
+```
+
+#### 10 coins at once, Heads and Tails
+
+``` {r tencoins}
+Trial <- rbinom(n = 10, size = 1, prob = .5)
+ifelse(Trial == 1, 'Heads','Tails')
+```
+
+#### 10 coins at once, printing Trial Result:  number of heads
+
+```{r trialresult}
+#  To do sets of 10 -- this prints the 
+#  "Trial Result"  -- the number of
+#   heads in one trial of 10 tosses:
+rbinom(n = 1, size = 10, prob = .5)
+```
+
+#### Do a bunch of trials of 10 coins
+
+```{r manytrials}
+#  Same thing with bigger n
+Trials <- rbinom(n = 1000000, size = 10, prob = .5)
+hist(Trials)
+table(Trials)
+```
+
+### Modeling Free Throws for a 90% shooter
+
+```{r freethrows}
+#  Having R do one free throw:
+Trial <- rbinom(n = 1, size = 1, prob = .9)
+ifelse(Trial == 1, 'Make', "Miss")
+
+#  To do all 10 at once:
+Trial <- rbinom(n = 10, size = 1, prob = .9)
+ifelse(Trial == 1, 'Make', "Miss")
+
+#  To do sets of 10 -- this prints the 
+#  "Trial Result"  -- the number of
+#   Made free throws in 10 attempts: 
+Trials <- rbinom(n = 1, size = 10, prob = .9)
+Trials
+#    Do a bunch of trials:
+Trials <- rbinom(n = 100, size = 10, prob = .9)
+hist(Trials)
+table(Trials)
+```
+
+
+### To do the Burning House hypothesis test
+#### Simulate 17 choices of house, if houses are equally likely
+
+```{r burninghouse}
+
+```
+
+### To do the 80% shooter hypothesis test
+#### Simulate 20 free throws, if person is really an 80% shooter
+
+```{r}
+
+```
+

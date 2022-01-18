@@ -1,0 +1,116 @@
+---
+title: "Bootstrap CI for a Mean"
+author: "yourname"
+date: "11/16/2021"
+output: html_document
+---
+
+```{r setup}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+###  We want to estimate the true mean number of states visited by all students in this (and the other section of this) class.
+
+#### We will start with a random sample of 5 students from the population (students in this class)
+
+```{r}
+#  Here is my original sample from the population
+os <- c(13, 12, 25, 17, 5)
+
+#  Find the PE.  Here the point estimate is the mean of the sample.
+PE <- mean(os)
+PE
+
+#  To select a sample of 5 from the faked population
+#  -- using our sample in place of the population:
+#  Do two of these and calculate the mean from each
+s <- sample(os, size = 5, replace = TRUE)
+s
+mean(s)
+
+
+#  Record these means on your activity
+```
+
+### Loops
+
+#### In order to develop code to have R make a bootstrap distribution, we need the coding idea of a LOOP.
+
+```{r loops}
+for (j in 1:5)  print("Hi there")
+
+for (i in 1:5)  print(i)
+
+for (i in 1:5) {
+  print("Hi")
+  print(i)
+  print(i^2)
+}
+
+```
+
+### Saving the bootstrap means
+
+```{r bootmeans}
+# Now we want to save values in a vector, rather than just printing them on the console.  We'll call the vector Allmeans.
+
+Allmeans <- c()
+for (i in 1:10000) {
+  s <- sample(os, size = length(os), replace = TRUE)
+  Allmeans[i] <- mean(s)
+}
+
+#  Allmeans
+hist(Allmeans)
+
+SE <- sd(Allmeans)
+SE
+
+ # Note:  we used size = 5 above, to reflect the size of the original sample.  Using length(os) makes the code work for any length os vector.
+
+# The values in Allmeans are the Statistics from bootstrap samples.  So the SE is just the standard deviation of Allmeans.
+
+#  Make a histogram of Allmeans
+
+```
+
+###  Now, calculate the CI, using the same method as for percentages
+
+```{r}
+#  Calculate ME, lower and upper limits, then print in a sentence in terms of the problem.
+
+ME <- 2 * SE
+
+lowerlimit <- PE - ME
+upperlimit <- PE + ME
+
+lowerlimit <- round(lowerlimit, 2)
+upperlimit <- round(upperlimit, 2)
+
+print(paste("I'm 95% confident that the true mean number of states visited by students in 087 is captured in the interval from ", lowerlimit, " to ", upperlimit))
+```
+
+### Now do a CI for a median:
+
+```{r medianCI}
+
+#  The code is really all the same, except changing means to medians in the PE and the bootstrap samples.
+
+
+```
+
+
+###  Now find a CI for theWetsuit example
+
+#### Note how to deal with a missing value!
+
+```{r wetsuits}
+os <- c(0.08,0.10,0.07,0.08,0.10,0.11,
+        0.05,0.05,0.06,0.08,NA,0.05,0.10)
+
+os <- na.omit(os)    # to remove missing values from vector
+
+```
+
+
+

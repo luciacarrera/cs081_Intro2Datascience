@@ -1,0 +1,125 @@
+---
+title: "Practicing HTs and Bootstrap CIs"
+author: "yourname"
+date: "11/16/2021"
+output: html_document
+---
+
+```{r setup}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+```
+
+### Hypothesis Test
+
+In his lifetime, Paul the Octopus guessed the outcomes of 12 out of 14 world cup soccer games correctly. 
+
+Do a hypothesis test to see if he could have just done this by chance, or if there is something else at play...
+
+```{r setupHT}
+#   Calculate the observed result:
+
+
+#  Write down the hypotheses:
+
+#  Null Hypothesis:  
+#  Alternative Hypothesis:  
+
+```
+
+#### Now simulate outcomes of the study under the null hypothesis
+
+```{r modelHT}
+#  Use rbinom to generate Trials
+#  Trials <- rbinom(n = , size = , prob = )
+
+#  Make a histogram of the trials
+
+#  Make a table of the trials
+
+```
+
+#### Calculate the pvalue and make a decision
+
+```{r pvalue}
+
+
+#  This p-value represents the probabity that Paul got 12 (or more) correct guesses just by chance.  It is very  
+
+#  Why did it happen?
+
+```
+
+###  Bootstrap Confidence Interval for a Percentage
+
+We could also answer the same question with a confidence interval.Use rbinom() to create bootstrap samples.
+
+```{r bootstrap}
+#  Calculate the PE
+
+#  Generate trials using the PE for the probability
+# Trials <- rbinom(n = , size = , prob = )
+
+#  Express the trials as percentages;
+# Perc <- 100 * Trials/14
+
+#  Do  hist()
+
+```
+
+#### Use the Standard Error to estimate the precision of the original study.
+
+```{r SE}
+#  The standard deviation of the Bootstrap percentages is the SE
+
+
+#  Two times the SE gives you the Margin of Error -- the ME
+
+
+```
+
+#### Now, make a 95% Confidence Interval
+
+```{r CI}
+# The point estimate is the original percentage from the original data.
+
+#  The CI is the PE plus or minus the ME
+# upperlimit <- PE + ME
+# lowerlimit <- PE - ME
+# 
+# upperlimit <- round(upperlimit, 2)
+# lowerlimit <- round(lowerlimit, 2)
+# 
+# print(paste("I'm 95% confident the true accuracy rate of Paul the Octopus, if he could keep predicting  is captured in the interval from ", lowerlimit, " to ",upperlimit, "%"))
+
+#  Is he doing better than chance?
+```
+
+### Bootstrap Confidence Interval for a Mean 
+
+Find a confidence interval for true mean REM sleep for animals.  Assume msleep contains a random sample of animals, and use the variable sleep_rem
+
+```{r sleeprem}
+
+#  Summarise the vector:
+
+#  Let it equal os
+
+#  Remove missing values from os
+
+#  Find the point estimate -- the mean of os
+
+#  Make many bootstrap samples from os, and save in the vector Allmeans:
+
+
+#  Do a histogram of Allmeans
+
+#  Find the SE, the ME, and the confidence interval
+
+
+#  State the CI:
+# print(paste("I'm 95% sure that the true mean rem sleep time for animals is captured in the interval from ", lowerlimit, " to ", upperlimit, " hours."))
+
+```
+

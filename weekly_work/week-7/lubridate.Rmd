@@ -1,0 +1,60 @@
+---
+title: "lubridate and leaflet"
+author: "your name here"
+date: "10/12/2021"
+output: 
+  html_document:
+    toc:  true
+---
+## Burlington Police Department Data
+
+This is a summary of calls to the Burlington Police Department from January 1, 2020 to December 31, 2020.
+
+```{r setup, message = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+#  load tidyverse, lubridate, and leaflet
+library(tidyverse)
+library(lubridate)
+library(leaflet)
+
+#  Use read.csv to read in the data.  
+
+# b <- read.csv('BPDIncidents2020.csv')
+# names(b)
+
+```
+
+### Organizing Date/Time data
+
+```{r datetime}
+#  Look at the call_time variable:  Print the first few observations, and do class().  
+
+#It is in a month/day/year hour/minute format, but R does not recognize it as date/time data.  Using lubridate functions, we can 'extract' the date from call_time using the function mdy_hm().   (Other extraction functions are: dmy, myd, ymd, ydm, dym, mdy, ymd_hm)  Run the following code, print the first few observations of the new variable that has been created, and do class() for this new variable. (If R recognizes it as date/time data, the class should be "POSIXct" "POSIXt")
+
+
+#  Then we can use the functions date(), month(), wday(), and day() extract values from the date. Create a variable for Month, for Weekday, Day, and Date.  Make sure the Month and Weekday have character values (e.g., Jan, Feb...Mon, Tue).  Print about 10 observations of the new variables that have been created -- to get a variety, use sample_n().
+
+
+
+```
+
+###  Map of Calls in Burlington
+
+```{r Map, warning = FALSE}
+#  Do a scatterplot of Latitude by Longitude, to see where calls are made in Burlington. Do you recognize the shape of the data?
+
+# ggplot(data = b, 
+# mapping = aes(x = Longitude, y = Latitude)) +
+#   geom_point()
+
+#  Using leaflet, make a map showing circles on the location of each incident.  Start here:
+# m <- leaflet() %>%
+#   addTiles() %>%
+#   setView(lat = 44.475, lng = -73.212, zoom = 12)
+
+#  (Once you get the leaflet plot working, remove the scatterplot of Longitude by Latitude)
+# m  %>% addCircles(lng = b$Longitude, lat = b$Latitude)
+```
+
+

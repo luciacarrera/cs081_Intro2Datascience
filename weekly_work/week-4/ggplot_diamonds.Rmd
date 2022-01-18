@@ -1,0 +1,95 @@
+---
+title: "More ggplot2 -- diamonds data"
+author: "Sheila Weaver"
+date: "9/21/2021"
+output: html_document
+---
+
+### Setup
+
+```{r setup, message = FALSE, warning=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# Load ggplot2 or the tidyverse when you want to use it:
+library(tidyverse)
+
+#  We'll use the package dplyr, so install it and load it.  Or just install and load the tidyverse:
+
+```
+
+### More graphs:  the diamonds data
+
+```{r look}
+#  We'll use the diamonds data frame, stored in ggplot2.  Take a look at it:
+tibble(diamonds)
+
+#  For more info, do help(diamonds) on the console
+help(diamonds)
+```
+
+### Look at diamond weight (the variable, carat)
+The shape of the data
+```{r carat, warning = FALSE}
+#  histogram of carat  (diamond weight)
+ggplot(data = diamonds,
+       mapping = aes(x = carat)) + 
+  geom_histogram(fill = 'darkgreen', color = 'blue')
+
+#  density plot -- smoothed histogram
+ggplot(data = diamonds,
+       mapping = aes(x = carat)) + 
+  geom_density(fill = 'darkgreen', color = 'blue')
+
+```
+
+
+###  Look at categorical variables (cut, color, clarity)
+
+```{r bars}
+#  Make bar graphs of each:
+ggplot(data = diamonds,
+       mapping = aes(x = cut, fill = cut)) + 
+  geom_bar()
+```
+
+### Bar graph with two variables: Cut and clarity
+
+```{r}
+#  Map clarity to the x axis, and cut to the fill aesthetic.
+ggplot(data = diamonds,
+       mapping = aes(x = clarity, fill = cut)) + 
+  geom_bar(position='fill')
+
+```
+
+###  Look at length and width of diamonds
+
+```{r lengthwidth}
+#  Scatterplot of y by x
+ggplot(data = diamonds,
+       mapping = aes (x=x, y=y))+
+  geom_point()
+
+#  remove the outliers:
+d <- diamonds %>% filter( y < 20 & x > 30 ) //wrong values
+ggplot(data = diamonds,
+       mapping = aes (x=x, y=y))+
+  geom_point()
+```
+
+###  boxplots of price by cut
+
+```{r pricecut}
+#  Do ideal cut diamonds cost more or less?   Why?
+ggplot()
+
+```
+
+### More graphs to figure it out....
+
+```{r why}
+
+```
+
+
+

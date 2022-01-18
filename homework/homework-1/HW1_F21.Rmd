@@ -1,0 +1,130 @@
+---
+title: "HW 1 087 F21"
+author: "Lucía Carrera"
+date: "9/10/2021"
+output: html_document
+---
+
+```{r setup}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#   Part 1
+
+## Enter vectors:
+
+```{r vectors}
+#   Enter the vector (variable) height with the values
+#    72, 70, 64, 68, 63, 60, 73, 62, 66
+height <- c(72, 70, 64, 68, 63, 60, 73, 62, 66)
+
+#   Enter the vector weight with the values 
+#    195, 200, 120, 165, missing, 100, 210, 140, 145 
+weight <- c(195, 200, 120, 165, NA, 100, 210, 140, 145)
+
+#   Enter the vector instate with the values 
+#   In, In, Out, Out, Out, Out, In, Out, In
+instate <- c('In', 'In', 'Out', 'Out', 'Out', 'Out', 'In', 'Out', 'In')
+
+#   Use a shortcut to create a vector called ID
+#   with the integers from 1 to 9.
+ID <-1:9
+
+#  Make a new vector, called bmi, that contains  
+#  body mass index, using the height and
+#  weight vectors that you entered.  
+#  Here is the equation:  
+#      703.07 x W / (H squared)    
+#  You'll need to make sure it is written in 
+#  a form that R understands.
+bmi <- 703.07 * weight / (height**2)
+```
+
+```{r vectors_printed}
+# print each vector below
+height
+weight
+instate
+ID
+bmi
+```
+
+## Make a plot
+
+**Describe the relationship here:  strong/weak, positive/negative. What does this mean about the relationship between height and weight? **
+
+I would describe the relationship between the points in this scatterplot as moderate or weak, with a positive and linear association
+```{r scatterplot}
+#   Create a scatterplot of weight by height 
+#   (i.e., height on the x axis)
+plot(x = weight, y = height)
+```
+
+
+## Make a data frame
+
+```{r dataframe}
+#  Create a data frame, called students, that includes all of the vectors you created above.  Print it below.
+students <- data.frame(height,weight,instate,ID,bmi)
+
+```
+
+#   Part 2
+
+## Read in a data file
+
+```{r readfile}
+#   Download the data file surveyA_F21.csv, then put it in your class folder,  and read it using the function read.csv. Be sure you are in your project, and you have saved your homework Rmd and data in the directory that you see in the lower right pane.  If there are all true, you can just put the file name of the data in the quotes:
+survey <- read.csv("surveyA_F21.csv")
+
+#   Run the following:
+head(survey) #first 6 entries of the dataframe
+dim(survey)
+names(survey)
+summary(survey)
+```
+
+## Stats from Survey data file
+
+```{r surveystats}
+#   Find the mean and median of the variables, 
+#   earnings and GPA. Use the functions
+#    mean() and median(), and make sure
+#   the values match those in the summary above.
+mean(survey$Earnings)
+mean(survey$GPA, na.rm = TRUE)
+median(survey$Earnings)
+median(survey$GPA, na.rm = TRUE)
+sd(survey$Earnings)
+
+
+```
+
+## Graphs from Survey data file
+
+**Describe the Weight by Height plot made with the survey data.  Is it similar to the one above?  How does it differ and why? **
+
+This scatterplot is similar to the first one in the sense that they are both are positive and linear.
+
+It differs because it has a very distinct strong relationship and because we can clearly identify outliers.
+```{r surveygraphs}
+#  Make these graphs using the survey data that you read in above:
+
+#   Have R make a histogram of earnings
+hist(survey$Earnings)
+
+#   Have R make a histogram of height 
+hist(survey$Height)
+
+#   Have R do a barplot of relationship
+barplot(table(survey$Relationship))
+
+#   Finally, plot weight by height 
+plot(x=survey$Height, y=survey$Weight)
+```
+
+
+
+
+
+

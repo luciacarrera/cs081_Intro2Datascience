@@ -1,0 +1,72 @@
+---
+title: "Modeling Random Behavior"
+author: "yourname"
+date: "11/4/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Modeling Coin Flips
+
+#### One coin:
+
+```{r onecoin}
+#  Having R flip one coin:
+
+```
+
+#### 10 coins at once, Heads and Tails
+
+``` {r tencoins}
+
+```
+
+#### 10 coins at once, printing Trial Result:  number of heads
+
+```{r trialresult}
+#  To do sets of 10 -- this prints the 
+#  "Trial Result"  -- the number of
+#   heads in one trial of 10 tosses:
+
+```
+
+#### Do a bunch of trials of 10 coins
+
+```{r manytrials}
+#  Same thing with bigger n
+
+```
+
+### Modeling Free Throws for a 90% shooter
+
+```{r freethrows}
+#  Having R do one free throw:
+
+#  To do all 10 at once:
+
+#  To do sets of 10 -- this prints the 
+#  "Trial Result"  -- the number of
+#   Made free throws in 10 attempts: 
+
+#    Do a bunch of trials:
+ 
+```
+
+
+### To do the Burning House hypothesis test
+#### Simulate 17 choices of house, if houses are equally likely
+
+```{r burninghouse}
+
+```
+
+### To do the 80% shooter hypothesis test
+#### Simulate 20 free throws, if person is really an 80% shooter
+
+```{r}
+
+```
+

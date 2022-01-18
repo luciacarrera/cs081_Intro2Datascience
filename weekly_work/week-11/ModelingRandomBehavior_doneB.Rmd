@@ -1,0 +1,137 @@
+---
+title: "Modeling Random Behavior"
+author: "yourname"
+date: "11/4/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Modeling Coin Flips
+
+#### One coin:
+
+```{r onecoin}
+#  Having R flip one coin:
+Trial <- rbinom(n = 1, size = 1, prob = .5)
+ifelse(Trial == 1, 'Heads', 'Tails')
+```
+
+#### 10 coins at once, Heads and Tails
+
+``` {r tencoins}
+Trial <- rbinom(n = 10, size = 1, prob = .5)
+ifelse(Trial == 1, 'Heads', 'Tails')
+```
+
+#### 10 coins at once, printing Trial Result:  number of heads
+
+```{r trialresult}
+#  To do sets of 10 -- this prints the 
+#  "Trial Result"  -- the number of
+#   heads in one trial of 10 tosses:
+Trial <- rbinom(n = 1, size = 10, prob = .5)
+Trial
+```
+
+#### Do a bunch of trials of 10 coins
+
+```{r manytrials}
+#  Same thing with bigger n
+Trial <- rbinom(n = 100, size = 10, prob = .5)
+Trial
+hist(Trial)
+table(Trial)
+```
+
+### Modeling Free Throws for a 90% shooter
+
+```{r freethrows}
+#  Having R do one free throw:
+Trial <- rbinom(n = 1, size = 1, prob = .9)
+ifelse(Trial == 1, 'Made', 'Miss')
+
+#  To do all 10 at once:
+Trial <- rbinom(n = 10, size = 1, prob = .9)
+ifelse(Trial == 1, 'Made', 'Miss')
+
+#  To do sets of 10 -- this prints the 
+#  "Trial Result"  -- the number of
+#   Made free throws in 10 attempts: 
+Trial <- rbinom(n = 1, size = 10, prob = .9)
+Trial 
+
+#    Do a bunch of trials:
+Trial <- rbinom(n = 100000, size = 10, prob = .9)
+# Trial 
+hist(Trial)
+table(Trial)
+```
+
+
+### To do the Burning House hypothesis test
+#### Simulate 17 choices of house, if houses are equally likely
+
+```{r burninghouse}
+14/17
+
+Trials <- rbinom(n = 1000, size = 17, prob = .5)
+hist(Trials)
+table(Trials)
+
+#  How often did values of 14 or higher come up just by chance
+#  For me, this happened 11/1000 = .0011
+
+#  So she could have chosen 14 (or more) just by chance.
+#  But the chance of this is really low (.0011) 
+#  (and a common cutoff for "LOW" is < .05)
+#  So we reject this idea, and conclude that the 
+#  alternative hypothesis is true:  SHE DOES have a preference
+
+```
+
+###  Lady Tasting Tea -- got all 8 correct -- milk or tea first
+
+```{r tea}
+#  Null:  She can't tell the difference 
+#  Alternative:  She can
+
+Trials <- rbinom(n = 1000, size = 8, prob = .5)
+hist(Trials)
+table(Trials)
+
+#  She could have gotten all 8 correct by chance,
+#  but it only happened 6/1000 times for me .006
+
+#  Conclusion:  This is so unlikely that I conclude that 
+#   she really knows the difference.
+
+```
+
+
+### To do the 80% shooter hypothesis test
+#### Simulate 20 free throws, if person is really an 80% shooter
+
+```{r}
+#  Observed result = 13/20 = .65
+
+
+# Null Hypothesis:  Really is an 80% shooter
+# Alternative Hypothesis:   Really is worse than 80%
+
+Trials <- rbinom(n = 10000, size = 20, prob = .8)
+hist(Trials)
+table(Trials)
+
+#  Getting 13 or worse could happen by chance.  
+#  in my simulation, it happened 91 times out of 1000
+#  so  .091  <-- this is called the "p value"
+ 5+26+60
+
+#  This is not small enough to reject the Null, so we 
+#  conclude that we do NOT have enough evidence to say 
+#  that he is worse than an 80% shooter.
+```
+

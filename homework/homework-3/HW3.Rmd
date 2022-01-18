@@ -1,0 +1,89 @@
+---
+title: "HW#3"
+author: "yourname"
+date: "10/1/2021"
+output: html_document
+---
+
+```{r setup, message = FALSE, warning = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+#  load the tidyverse here -- OR-- load dplyr and ggplot2
+
+
+```
+
+##  Question 1: Mapping Aesthetics -- 4 pts
+
+####  Variable -- Aesthetic 
+
+- Year -> 
+- Totalprop -> 
+- Letter -> 
+- Sex -> 
+
+<put your ggplot code here>
+
+
+##  Question 2:  dplyr 
+
+### part a  -- lists in order  3 pts
+
+```{r top5}
+
+```
+
+```{r last5}
+
+```
+
+### part b -- group_by -- 3 pts
+
+```{r groupby}
+
+```
+
+##  Question 3 
+
+### part a -- bar graph -- 3 pts
+
+```{r bargraph}
+
+```
+
+### part b -- box plot -- 3 pts
+
+```{r boxplot}
+```
+
+
+
+### part c -- facets -- 3 pts
+
+```{r facets}
+
+```
+
+  
+### part d -- logtrans -- 3 pts
+
+```{r logtrans, message = FALSE, warning = FALSE}
+
+```
+
+### part e -- whylog -- 4 pts
+
+<why is the log transformation useful?  Put answer here >
+
+```{r nolog, warning = FALSE}
+#  Graph here the same scatterplot without the log transformation
+
+```
+
+
+
+##  Question 4:   Lie Factor --   4 pts 
+
+< Type in calculations, answer, and describe the result here >
+
+

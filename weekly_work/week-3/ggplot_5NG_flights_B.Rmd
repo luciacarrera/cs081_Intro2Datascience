@@ -1,0 +1,100 @@
+---
+title: "More ggplot2 practice"
+author: "Sheila Weaver"
+date: "9/14/2021"
+output: html_document
+---
+
+### Setup
+
+```{r setup, message = FALSE, warning=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# Load ggplot2 or the tidyverse when you want to use it:
+library(tidyverse)
+
+#  We'll use the package dplyr, so install it and load it.  Or just install and load the tidyverse:
+
+#  We'll also use the package nycflights13, so install and load that, too:
+library(nycflights13)
+
+```
+
+
+###  The 5NG -- Five Named Graphs, from Modern Dive
+
+-  scatterplot
+-  linegraphs
+-  boxplots
+-  histograms
+-  bar graphs
+
+#### 1. scatterplot
+
+```{r flights}
+# We'll use the flights data frame, in nycflights13 package
+#  take a look at the data
+tibble(flights)
+names(flights)
+
+#  Make a data frame with only the Alaska airlines flights
+all_alaska_flights <- flights %>% 
+  filter(carrier == 'AS')
+
+#  Make a scatterplot of arrival delay BY departure delay
+ggplot(data = all_alaska_flights,
+       mapping = aes(x = dep_delay, y = arr_delay)) +
+  geom_point(size = .5, alpha = .3)
+
+#  To see the dense part better:
+#  in the geom_point()  
+#  add  size = .5   (default size = 1)
+#  use alpha = .3   (default is 1)
+```
+
+#### 2. linegraph
+
+```{r linegraphs}
+#  the data frame, weather, in nycflights13, has weather for every hour of 2013.  We'll focus on weather in the first half of January only for the Newark airport.
+
+early_january_weather <- weather %>% 
+  filter(month == 1  & day < 15  &  origin == 'EWR')
+
+#  Look at temperature over time.  (Temperature BY time)
+ggplot(data = early_january_weather,
+       mapping = aes(x = time_hour, y = temp)) +
+  geom_line()
+
+#  Now look at temperature over time with the full data frame:
+```
+
+#### 3. boxplots
+
+```{r boxplots, warning = FALSE}
+#  Using full data frame, make boxplots of temperatures by month
+
+```
+
+#### 4. Histograms and density plots
+
+```{r histograms, warning = FALSE}
+#  Make a histogram of temperatures, using fill and color.
+
+#  Make a density plot of temperatures, using fill and color.
+
+#  Do histogram and density plots *by month*, using facets
+
+#  histograms by month
+
+#  density by month
+
+```
+
+####  5. bar graphs
+
+```{r bargraph}
+
+#  Try a bar graph of month
+
+```
+

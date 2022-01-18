@@ -1,0 +1,59 @@
+---
+title: "More ggplot2 practice -- Babynames"
+author: "Sheila Weaver"
+date: "9/14/2021"
+output: html_document
+---
+
+### Setup
+
+```{r setup, message = FALSE, warning=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# Load ggplot2 or the tidyverse when you want to use it:
+library(tidyverse)
+
+#  We'll use the package dplyr, so install it and load it.  Or just install and load the tidyverse:
+
+#  Well also use the package, babynames.  Install it and load it, too:
+library(babynames)
+names(babynames)
+dim(babynames)
+tibble(babynames)
+
+```
+
+### Make a data frame with just your name:
+
+```{r namedf}
+
+Sheila <- babynames %>%
+  filter(name == "Sheila")
+
+tibble(Sheila)
+dim(Sheila)
+
+```
+
+### Graphing your name:
+
+```{r graphit}
+#  We can graph the trend in your name over time...
+
+ggplot(data = Sheila,
+       mapping = aes(x = year, y = prop)) +
+  geom_point()
+
+#  Add color = sex
+ggplot(data = Sheila,
+  mapping = aes(x = year, y = prop, color = sex)) +
+  geom_point()
+
+#  Do geom_line
+ggplot(data = Sheila,
+  mapping = aes(x = year, y = prop, color = sex)) +
+  geom_line()
+```
+
+
+

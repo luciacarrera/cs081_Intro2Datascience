@@ -1,0 +1,188 @@
+---
+title: "Oswego"
+author: "Sheila Weaver"
+date: "9/23/2021"
+output: html_document
+---
+
+##### In April, 1940, there was an outbreak of food poisoning in Oswego, NY.  All of the victims became ill for a few days, then recovered.  All had attended a church supper on April 18, though not all who had attended became ill.  A state epidemiologist was called in, and he interviewed almost all of the people attending the supper.  His task was to determine the cause of the outbreak.
+
+##### The results of the interviews were compiled and are found in the file Oswego.csv, on our Blackboard site -- Look in the Data tab.  
+
+```{r setup, warning = FALSE, message = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+#  Download Oswego.csv, and read it into R, using read.csv.  Call the data frame oswego.
+oswego <- read.csv("Oswego.csv")
+
+#  load the tidyverse
+library(tidyverse)
+```
+
+#### Look at the data
+
+```{r look }
+# Use  dim(), names(), and tibble() to get a first look at the data.  Then try  str(),  How many observations are there?  How many variables?   How many are numeric, character, quantitative, categorical?
+dim(oswego)
+names(oswego)
+tibble(oswego)
+str(oswego)
+
+```
+
+#### Look at the Age variable 
+
+##### Something is wrong!  See if you can find the problem.  Stop here, and we’ll discuss this with the class.
+
+```{r, warning = FALSE}
+# Start by looking at Age.  Use ggplot to do a density plot of Age.    Does this look right?
+
+ggplot(data = oswego, 
+       mapping = aes(x = Age)) +
+  geom_density(fill = 'orchid')
+
+```
+
+####  Fix the data
+
+```{r fixit, warning = FALSE}
+
+#  R will give you a strange looking density plot – not just one smooth density curve.  This is because R is not reading Age as a numeric variable.  In fact, there is one missing value in Age, and R is interpreting it as a character string.  It assumes that Age has numbers and strings, so it does not think it is a numeric variable.  Look at the data set by clicking the table icon in the upper right Environment pane.  Can you find the missing value?  Can you find missing values in any other variables, too?  
+
+# Now use ggplot to do a density plot of Age, using the data without NAs (ggplot will leave them out automatically).  Does the shape of the distribution make sense, given that it is a church supper?  Explain.
+
+oswego <- read.csv("Oswego.csv", na.strings = '?')
+
+ggplot(data = oswego, 
+       mapping = aes(x = Age)) +
+  geom_density(fill = 'orchid')
+
+```
+
+#####  Are sick people older or younger, on average?  That is, might age have had something to do with becoming ill?  Redo your density plot of age, showing the variable Sick in some way.  Describe what you find:
+
+```{r agebysick, warning = FALSE}
+#  Compare ages for those who were sick or not:
+#  easiest with fill = Sick
+ggplot(data = oswego, 
+       mapping = aes(x = Age, fill = Sick)) +
+  geom_density(alpha = .6)
+
+ggplot(data = oswego, 
+       mapping = aes(x = Age, fill = Sick)) +
+  geom_density() +
+  facet_wrap( ~ Sick, ncol = 1)
+
+```
+
+#####	The food poisoning was actually caused by a type of bacteria in the food. Try making bar graphs for each food.  To begin, make a bar graph of Ham.  Use ggplot, and the aesthetic Ham, and use geom_bar().  Do the same with the next food, Spinach.
+
+```{r  hamspinach}
+#  Look to see who ate each food...
+ggplot(data = oswego,
+       mapping = aes(x = Ham, fill = Ham)) +
+  geom_bar()
+
+ggplot(data = oswego,
+       mapping = aes(x = Spinach, fill = Spinach)) +
+  geom_bar()
+```
+
+
+#####	To determine which food caused the outbreak, can we just look to see which food was most likely to be consumed by the sick people?   Discuss why this does not actually help us find the food at fault.  
+
+#####  Stop here, and we’ll discuss this with the class.
+
+##### To find the culprit, we need to run the bar graphs started above, but this time using Sick as a ‘fill’ variable. Start with Ham. 
+
+##### Of people who ate HAM, what proportion got sick compared to proportion of people who didn't eat ham?
+
+```{r hambysick}
+##   bar graphs by Sick:
+ggplot(data = oswego,
+       mapping = aes(x = Ham, fill = Sick)) +
+  geom_bar(position = 'fill')
+
+ggplot(data = oswego,
+       mapping = aes(x = Spinach, fill = Sick)) +
+  geom_bar(position = 'fill')
+```
+
+##### Run these bar graphs for all of the foods. 
+
+```{r foodsbysick}
+# names(oswego)
+# 
+ggplot(data = oswego,
+       mapping = aes(x = Ham, fill = Sick)) +
+  geom_bar(position = 'fill')
+
+ggplot(data = oswego,
+       mapping = aes(x = Spinach, fill = Sick)) +
+  geom_bar(position = 'fill')
+
+ggplot(data = oswego,
+       mapping = aes(x = Potatoes, fill = Sick)) +
+  geom_bar(position = 'fill')
+
+ggplot(data = oswego,
+       mapping = aes(x = CabSalad, fill = Sick)) +
+  geom_bar(position = 'fill')
+
+ggplot(data = oswego,
+       mapping = aes(x = Jello, fill = Sick)) +
+  geom_bar(position = 'fill')
+
+ggplot(data = oswego,
+       mapping = aes(x = Rolls, fill = Sick)) +
+  geom_bar(position = 'fill')
+
+ggplot(data = oswego,
+       mapping = aes(x = Bread, fill = Sick)) +
+  geom_bar(position = 'fill')
+
+ggplot(data = oswego,
+       mapping = aes(x = Milk, fill = Sick)) +
+  geom_bar(position = 'fill')
+
+ggplot(data = oswego,
+       mapping = aes(x = Coffee, fill = Sick)) +
+  geom_bar(position = 'fill')
+
+ggplot(data = oswego,
+       mapping = aes(x = Water, fill = Sick)) +
+  geom_bar(position = 'fill')
+
+ggplot(data = oswego,
+       mapping = aes(x = Cakes, fill = Sick)) +
+  geom_bar(position = 'fill')
+
+ggplot(data = oswego,
+       mapping = aes(x = VanIC, fill = Sick)) +
+  geom_bar(position = 'fill')
+
+ggplot(data = oswego,
+       mapping = aes(x = ChocIC, fill = Sick)) +
+  geom_bar(position = 'fill')
+
+ggplot(data = oswego,
+       mapping = aes(x = FruitSalad, fill = Sick)) +
+  geom_bar(position = 'fill')
+
+```
+
+##### If you're thinking -- there must be a simpler way to do this, you are right.  It requires restructuring our data to make it more 'narrow':
+
+```{r gather}
+tidyo <- oswego %>%
+  gather(key = Food, value = Eaten,
+         -NumID,-Age,-Sex,-Mealtime,-Sick,-OnsetDT)
+
+tibble(tidyo)
+# 
+ggplot(data = tidyo,
+       mapping = aes(x = Eaten, fill = Sick)) +
+  geom_bar(position = 'fill') +
+  facet_wrap(~ Food)
+
+```
+

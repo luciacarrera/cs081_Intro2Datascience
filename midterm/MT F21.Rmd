@@ -1,0 +1,143 @@
+---
+title: "MT F21 Key"
+author: "Sheila Weaver"
+date: "10/17/2021"
+output: html_document
+---
+
+### 1. Set-up
+
+```{r setup, message = FALSE}
+
+knitr::opts_chunk$set(echo = TRUE)
+
+# loading of tidyverse which includes dplyr and ggplot2
+library(tidyverse)
+
+# loading of data to use
+surv <- read.csv("SurveyforMTF21.csv", na.strings = '', stringsAsFactors = TRUE)
+
+# prints out result summaries of data
+summary(surv)
+
+```
+
+### 2. Bar Graph
+
+The trend that we can observe here, is that as university students as they get older (pass from freshmen to sophomore, etc) they are more likely to be in a relationship. This can be seen in the graph by looking at how the 'pink' portion of each bar gets smaller from left to right, while the 'blue' part gets larger. An explanation for this trend is that when once gets older, the desire to settle down grows larger, as well as the fact that you get to know more people (and also get to know them better), the more time you are in college.
+
+```{r bars}
+# data frame to use in the bar graph with the NAs removed from Year
+surv2 <- surv %>% filter(!is.na(Year))
+
+# Bar graph of Relationship by Year
+ggplot(data = surv2, 
+       mapping = aes(x = Year, fill = Relationship)) +
+  geom_bar(position = 'fill') +
+  theme_bw() +
+  theme(axis.text.x = element_text(hjust=1, angle = 60)) +
+  labs(fill = "Are you in a relationship?")
+
+```
+
+###  3. Boxplots
+
+In this graph we can see that the obvious happens: people who prioritize "Sleep and Social Life" get worse grades. However, what is very interesting is that the there is not a large difference regarding the median grade of people who prioritize "Social Life and Good Grades" to those who prefer "Sleep and Good Grades". Nevertheless, the people who obtain the maximum grades overall are those who prefer to sleep over having a good social life. This makes a lot of sense because sleeping is essential to correct functioning of the brain.
+
+```{r boxplot, warning = FALSE}
+# filtering of data through dpylr to remove NA in Triangle
+surv3 <- surv %>% filter(!is.na(Triangle))
+
+#  boxplot graph of GPA by Triangle
+ggplot( data = surv3, 
+        mapping = aes( y = Triangle, x = GPA , fill = Triangle)) +
+  geom_boxplot() +
+  labs(title="GPA by Two Most Important Things", x = "", y = "" ) +
+  guides(fill=FALSE) +
+  theme_gray()
+```
+
+### 4. Stats of Earnings by Year
+
+```{r stats}
+surv %>% # data to be used
+  filter(!is.na(Year))%>% # removing NAs from the Year variable
+  group_by(Year) %>%  # grouping the data into groups according to Year (freshmen, sophomore, etc)
+  summarise(mean_earnings = mean(Earnings), # get mean
+            median_earnings = median(Earnings), # get median
+            n_students = n()) # get number of students
+
+```
+
+### 5. Density plots of Earnings by Year
+I do believe that the Earnings and Year variables are related because  as we can see in both the graph and the summary variables previously shown, is that as the student progresses academically, the salary they received increases. This is specially true between Seniors and Graduates. Apart from this, it really caught my eye how the group with the least of people working (least density of earnings) are seniors, this could possibly be because the courseload increases during each academic year. Another very noticeable trend is that graduate students tend to earn a lot more than undergraduates.
+
+```{r density, warning = FALSE}
+# surv4 is a data frame to filter out the NAs from the Earnings
+surv4 <- surv %>% filter(!is.na(Earnings))
+
+# density graph of Year by Earnings
+ggplot( data = surv4,
+        mapping = aes( x = Earnings, fill=Year )) +
+  geom_density() +
+  facet_wrap( ~ Year,  ncol = 1) + 
+  theme_minimal() +
+  guides(fill='none') +
+  labs(title="Earnings by Year in School")
+
+```
+
+### 6. Top 8 and Bottom 8 GPAs
+
+The main differences I could notice between the two groups are that the ones with highter GPA tend to eat on average more times a week breakfast and read more books for pleasure.
+
+```{r top8}
+# Creating the data frame to use in both cases
+surv4 <- surv %>% # naming of the data frame and saying what data to use
+  filter( !is.na(Year) ,!is.na( GPA) ,!is.na(PhoneTime) ,!is.na(Sleep) ,!is.na( Breakfast) ,!is.na(Books)) %>% # removal of NAs
+  select( Year, GPA, PhoneTime, Sleep, Breakfast, Books) # selecting columns to appear
+
+# The 8 students with highest GPA
+surv4 %>% # data
+  arrange(desc(GPA)) %>% # telling dplyr to arrange them in descending order according to GPA
+  head(8) # selecting the first 8 entries
+
+#  The 8 students with the lowest GPA
+surv4 %>% # data
+  arrange(desc(GPA)) %>% # telling dplyr to arrange them in descending order according to GPA
+  tail(8) # selecting the last 8 entries
+
+```
+
+### 7. Density plots of Earnings
+
+```{r density2, warning = FALSE}
+# Creating data frame with the surveys' data to 
+surv7<- surv %>% # naming of dataframe and data to use
+  filter(!is.na(Earnings))%>% # removing NAs from Earnings variable
+  mutate(earnings_1000 = (Earnings / 1000)) # creating new variable where Earning's appears in 1000s of dollars
+
+# density plot of Earnings in thousands
+ggplot(data = surv7, 
+       mapping = aes( x= earnings_1000) ) +
+  geom_density(fill="darkgreen") +
+  labs(x = "Earnings in $1000's")
+
+# density plot of log of earnings in 1000s
+ggplot(data = surv7, 
+       mapping = aes( x= earnings_1000) ) +
+  geom_density(fill="darkgreen") +
+  scale_x_log10() +
+  labs(x = "log of (Earnings in $1000's)")
+
+```
+
+### Statement of Academic Honesty:
+
+I confirm that I, Lucía Carrera, did not consult with any other person while doing this test, either in person, email, texting, etc. I did not look at any other person's work, or show my work to others.  
+
+
+
+
+
+

@@ -1,0 +1,144 @@
+---
+title: "Test2 Review"
+author: "Sheila Weaver"
+date: "3/12/2021"
+output: html_document
+---
+
+```{r setup, message = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# Load the tidyverse
+library(tidyverse)
+```
+
+
+### First, read in Happiness data
+
+##### Download **happiness.csv** from the DATA link on Blackboard.
+
+##### Read it in, calling it HI. Three ways to read it in:
+
+* Use file.choose() and browse for it
+* Give a complete path to the file
+* (Preferred Method) Put the file in your project directory, and read using just the file name.
+
+
+```{r getdata}
+#  Browse for it:
+#   HI <- read.csv(file.choose())
+
+#  State a complete path to the file:
+#   HI <- read.csv('/Users/sweaver/Desktop/StatCS 087A S21/Happiness.csv')
+
+#  Or the preferred method:  Put the file in your project directory, make sure you are IN your project, and read using just the file name.
+HI <- read.csv('HappinessIndex.csv')
+
+#  Do dim and names, then do print a tibble of the data to see what is in it.
+dim(HI)
+names(HI)
+tibble(HI)
+
+```
+
+### Now read more about the data:  
+
+##### Go to this link: [Happiness Data Description](https://docs.google.com/document/d/1h8hh-E241ipv7g1c5EoOgWTcK6HlWdQmCLJt7wJ-NWM/edit?usp=sharing), and focus mainly on the variables: score, life expectancy, and GDP per capita. (Note: you will need to open the knitted document in your browser to access the link -- or copy/paste the link)
+
+### Histograms
+
+The score data is slightly skewed to the right.  Life Expectancies are somewhat left skewed. And GDP data is quite skewed to the right.
+
+```{r histograms, message = FALSE, warning = FALSE}
+#  Have R do a histogram of score.  Also do (separately) a histogram of life expectancy.  Also do a (separate) histogram of GDP per capita.  Describe above the shapes of the distributions.
+ggplot(data = HI,
+       mapping = aes(x = score)) +
+  geom_histogram(color = 'white', fill = 'orange')
+
+ggplot(data = HI,
+       mapping = aes(x = lifeExpectancy)) +
+  geom_histogram(color = 'white', fill = 'red')
+
+ggplot(data = HI,
+       mapping = aes(x = gdpPerCapita)) +
+  geom_histogram(color = 'white', fill = 'darkgreen')
+```
+
+### Some Stats
+
+Mean and median are similar for 'score.'  The mean is a little lower for life expectancy, because the data is slightly skewed left. The mean is much higher for gdp because the data is very right skewed.
+
+```{r stats}
+# Use the mean() function to have R calculate the mean of each of these three variables.  Also, calculate the median for each variable.  Do the means and medians tend to be similar for each variable?   Explain above.
+mean(HI$score)
+median(HI$score)
+mean(HI$lifeExpectancy, na.rm=TRUE)
+median(HI$lifeExpectancy, na.rm=TRUE)
+mean(HI$gdpPerCapita)
+median(HI$gdpPerCapita)
+library(babynames)
+names(babynames)
+```
+
+### Scatterplots
+
+```{r scatter, warning = FALSE}
+#  Have R do two scatterplots:   score by life expectancy      and    score by GDP per capita.
+ggplot(data = HI,
+       mapping = aes(x = lifeExpectancy, y = score)) +
+  geom_point()
+
+ggplot(data = HI,
+       mapping = aes(x = gdpPerCapita, y = score)) +
+  geom_point()
+```
+
+
+```{r scatter, warning = FALSE}
+# Know how to do the following coding tasks:
+library(dplyr)
+library(babynames)
+names(babynames)
+
+#	Create a scatterplot with ggplot, using colored points, determined by another variable
+ggplot(data = babynames, 
+       mapping = aes(x = year, y = prop, color=year)) +
+  geom_point()
+
+```
+
+
+#	Create a bar graph, with bars filled with color, determined by another variable
+#	Create a boxplot, with bars filled with color, determined by another variable
+#	Create a histogram or density plot for one quantitative variable.
+#	Create a density plot, using facet_grid or facet_wrap, to introduce a second variable
+#	Use labs() to add a title, or a label for axes 
+
+
+###Data Transformation and Summary:
+
+##	Know what Tidy Data is
+
+##	Know these data verbs in dplyr and what each is used for:   
+
+# filter, mutate, group_by, summarise, arrange, select, sample_n 
+
+##	Know how to do the following coding tasks:
+
+#	Finding mean, sd, median, etc., for a vector, using base package  
+#	Finding mean, sd, median, etc., for a vector, using dplyr (with summarise)  
+#	Know when na.rm= TRUE is needed, and where it goes (mainly, functions like mean())
+#	Use dplyr to find mean, sd, median, etc., by groups (using group_by).
+#	Filter data values and create a new (filtered) data frame.
+#	Filter out missing values for a particular variable from a data frame, using !is.na().
+#	Arrange a data frame in ascending or descending order
+#	Print the first or last few observations of a data frame
+#	Create a new variable, and add it to the current data frame (mutate) 
+
+
+```
+### Conclusions
+
+Describe the relationships briefly in terms of what they suggest about happiness.
+
+The higher the life expectancy, the happier the country seems to be.  Same for GDP, but it levels off at a point. That is, more money helps to a point, but then it doesn't.

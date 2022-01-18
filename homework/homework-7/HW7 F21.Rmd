@@ -1,0 +1,326 @@
+---
+title: "HW#7 87 F21 "
+author: "Lucía Carrera"
+date: "12/3/2021"
+output: html_document
+---
+
+```{r setup}
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+
+### Question 1.		A hypothesis test
+
+In my case p-value was 0.02 which is less than 0.05, so I reject the null hypothesis that 50% students would say they are better drivers than average, in favor of alternative hypothesis that more than 50% students would say they are better drivers.
+
+```{r Q1}
+
+# Suppose you surveyed a random sample of 200 UVM students, and 115 of them said they are ‘Better than Average’ or “Way Better than Average” drivers.    Do a hypothesis test to see if the true proportion of UVM students who would say they are better or way better drivers is a majority.   That is, use the null hypothesis “50% of students would say they are better or way better than average”.   Generate 1000 trials, compute the ‘p-value’ and state your decision (above), in terms of the problem.
+
+# Observer Result (OR)
+OR <- 115/200
+
+# Null Hypothesis: 50% of students would say they are better or way better than average
+Trials <- rbinom(n = 1000, size = 200, prob = .5)
+hist(Trials)
+table(Trials)
+
+# pvalue
+pValue <- (8 + 6 + 1 + 2 + 1 + 1 + 1) /1000
+pValue
+
+```
+
+### Question 2.	Confidence Intervals for Percentages
+
+####  part a -- Driving
+
+The point estimate is 57.5%.
+
+I’m 95% confident that the percentage of UVM students who say they are better driver than average is captured in the interval from 50.83% to 64.17%.
+
+I believe that majority of UVM students will say they are better drivers than average, since the whole 95% confidence interval is above 50%. 
+
+I’m 95% sure about this conclusion.
+
+```{r Q2a}
+# Use the same data as in question 1 (a random sample of 200 UVM students, and 115 of them said they are ‘Better than Average’ or “Way Better than Average” drivers.)    Using methods from class, find a 95% bootstrap confidence interval for the true percentage of students.  Have R calculate and print the lower and upper limit, rounding each value to 2 decimal places. (xx.xx  to xx.xx).  Also have R do a histogram of the bootstrap percentages.
+
+#  Express the trials as percentages;
+
+#  Generate trials using the PE for the probability
+Trials2 <- rbinom(n = 1000, size = 200, prob = 115/200)
+
+#  histogram and table
+hist(Trials2)
+table(Trials2)
+
+# Standard Error
+SE <- sd(Trials2)
+
+# Margin of error
+Perc <- 100 * Trials / 200
+
+# Point Estimate
+PE <- 100 * 115/200
+PE
+SE <- sd(Perc)
+ME <- 2 * SE
+
+# upper and lower limit
+lowerlimit <- PE - ME 
+upperlimit <- PE + ME
+lowerlimit <- round(lowerlimit,2)
+upperlimit <- round(upperlimit,2)
+
+
+# In the text before this chunk, state the point estimate, and write a sentence of interpretation above (I’m 95% sure…..)  Based on your interval, do you believe that a majority of all UVM students would say they are better or way better than average drivers?   How do you know?   How sure are you of the conclusion about a majority? (write answers above)
+
+print(paste("I am 95% confident the true mean difference of students saying they are better drivers is captured in the interval from",lowerlimit, upperlimit))
+```
+
+#### part b -- Favorite app
+
+Point estimate was 25%.
+
+I’m 95% confident that the percentage of UVM students who say that their favorite app is Instagram is in interval from 19.01% to 30.99%.
+I believe that minority of UVM students will say that their favorite app is Instagram, since the whole 95% confidence interval is under 50%. 
+
+I’m 95% sure about this conclusion.
+
+```{r Q2b}
+# Suppose in the same random sample of 200 UVM students, 50 of them said their favorite app is Instagram (the most popular app in this sample).    Using methods from class, find a 95% bootstrap confidence interval for the true percentage of students who prefer Instagram.  Have R calculate and print the lower and upper limit, rounding each value to 2 decimal places. (xx.xx  to xx.xx). Also have R do a histogram of the bootstrap percentages.
+
+# probability
+p = 50/200
+
+# Trials
+Trials <- rbinom(n = 1000, size = 200, prob = p)
+hist(Trials)
+
+# Percentage
+Perc <- 100 * Trials / 200
+
+# Point of Estimate
+PE <- 100 * p
+PE
+SE <- sd(Perc)
+
+# Margin of Error
+ME <- 2 * SE
+
+# upper and lower limit
+lowerlimit <- PE - ME 
+upperlimit <- PE + ME
+lowerlimit <- round(lowerlimit,2)
+upperlimit <- round(upperlimit,2)
+upperlimit
+
+# paste 
+print(paste(lowerlimit, upperlimit))
+
+
+# In the text before this chunk, state the point estimate, and write a sentence of interpretation above (I’m 95% sure…..)   Based on your interval, do you believe that a minority of all UVM students (less than 50%) like Instagram the best?   How do you know?   How sure are you of the conclusion about a minority? (write answers above)
+```
+
+### Question 3 -- Confidence Intervals for Means
+
+#### part a - CI for mean earnings
+The point estimate is 7458.578.
+I’m 95% confident that the true mean earnings in dollars for UVM students is in an interval from 5825.54 to 9091.61.
+
+```{r Q3a}
+# Use the attached data file surveyC_S21.csv, download it, and read in as a data frame called, s.  Assume the data is a random sample of 200 UVM students.  Using the bootstrap method, and code similar to the code from class, find a 95% confidence interval for the true mean earnings for UVM students.  Have R do a histogram of the bootstrap means, calculate the standard deviation of the bootstrap means (the SE), calculate the margin of error, and Upper and Lower limits of the confidence interval.  Have R calculate and print the lower and upper limit, rounding each value to 2 decimal places. (xx.xx  to xx.xx).   
+
+# data loading
+s <- read.csv("surveyC_F21.csv")
+
+library(tidyverse)
+
+os <- na.omit(s$Earnings)
+
+# point estimate
+PE <- mean(os)
+PE
+
+# for loop for boostrap confidence
+Allmeans <- c()
+for (i in 1:1000){
+  
+  mySample <- mean(sample(os, size = length(os), replace = TRUE))
+  Allmeans[i] <- mean(mySample)
+}
+
+# histogram
+hist(Allmeans)
+
+# Standard Error
+SE <- sd(Allmeans)
+
+# Margin of error
+ME <- 2*SE
+
+# upper and lower limit
+lowerlimit <- PE - ME 
+upperlimit <- PE + ME
+lowerlimit <- round(lowerlimit,2)
+upperlimit <- round(upperlimit,2)
+
+# printing of limits
+lowerlimit
+upperlimit
+
+#  Above this code chunk, state the point estimate, then state the interval in a complete sentence in terms of the problem, as we’ve done in class.  (I’m 95% sure…..)   (Hint:   Remember that you need to specify that Earnings is in the data frame, s:   os <- s$Earnings and you may need to remove missing values)
+```
+
+#### part b - CI for mean political leaning
+
+The point estimate is 3.40201.
+I’m 95% confident that the true mean of political standing for UVM students is in an interval from 3.062 to 3.742, meaning that they tend to be more liberal as they are in the lower half of the scale.
+
+```{r Q3b}
+# Once you have your code working for problem 3a, change it so that you can find the bootstrap confidence interval for the true mean response to the question ‘Circle where you political leaning falls, where 0 is most LIBERAL and 10 is most CONSERVATIVE.’ Produce the same output, described above. (Include the same output, including the histogram of the bootstrap means.)
+
+
+os <- na.omit(s$Political)
+
+PE <- mean(os)
+PE
+
+# for loop for bootstrap
+Allmeans <- c()
+for (i in 1:1000){
+  
+  samp <- mean(sample(os, size = length(os), replace = TRUE))
+  Allmeans[i] <- mean(samp)
+}
+
+# histogram
+hist(Allmeans)
+
+# Standard Error
+SE <- sd(Allmeans)
+
+# Margin of error
+ME <- 2*SE
+
+lowerlimit <- PE - ME 
+upperlimit <- PE + ME
+lowerlimit <- round(lowerlimit,3)
+upperlimit <- round(upperlimit,3)
+
+#upper and lowerlimit
+lowerlimit
+upperlimit
+
+#  Above this code chunk, state the point estimate, and state the interval in a complete sentence in terms of the problem, as we’ve done in class.  (I’m 95% sure…..)   If a value of 5 is ‘average’ or ‘centrist,” does your confidence interval allow you to say that UVM students consider themselves to be more liberal than average?  Explain.. 
+```
+
+### Question 4 -- Confidence Intervals for Medians
+
+#### part a - CI for Earnings median
+
+The point estimate is 5000.
+I’m 95% confident that the true median earnings in dollars for UVM students is in an interval from 4390.76 to 5609.24.
+
+```{r Q4a}
+
+# a.  Once you have your code working for problem 3, copy and change it so that you can find the bootstrap confidence interval for the true median earnings here.  Above, state the point estimate and write the Earnings confidence interval in words, in terms of the problem here, as we've done in class.  (I'm 95% sure...)  You don't need to print bootstrap histograms here.
+
+# 
+os <- na.omit(s$Earnings)
+
+PE <- median(os)
+PE
+
+Allmeds <- c()
+for (i in 1:1000){
+  
+  samp <- median(sample(os, size = length(os), replace = TRUE))
+  Allmeds[i] <- median(samp)
+}
+
+# Standard Error
+SE <- sd(Allmeds)
+
+# Margin of error
+ME <- 2*SE
+
+lowerlimit <- PE - ME 
+upperlimit <- PE + ME
+lowerlimit <- round(lowerlimit,2)
+upperlimit <- round(upperlimit,2)
+
+lowerlimit
+upperlimit
+
+```
+
+#### part b - CI for Political median
+
+The point estimate is 3.
+I’m 95% confident that the true median of political standing for UVM students is in an interval from 2.7 to 3.3, meaning that they tend to be more liberal as they are in the lower half of the scale.
+
+``` {r Q4b}
+# b. Once you have your code working for problem 3, copy and change it so that you can find the bootstrap confidence interval for the true median political leaning here.  Above, state each point estimate, and state the interval in a complete sentence in terms of the problem, as we’ve done in class.  (I’m 95% sure…..)  you don't need to print bootstrap histograms here.
+os <- na.omit(s$Political)
+
+PE <- median(os)
+PE
+
+Allmeds <- c()
+for (i in 1:1000){
+  
+  samp <- median(sample(os, size = length(os), replace = TRUE))
+  Allmeds[i] <- median(samp)
+}
+
+# Standard Error
+SE <- sd(Allmeds)
+
+# Margin of error
+ME <- 2*SE
+
+lowerlimit <- PE - ME 
+upperlimit <- PE + ME
+lowerlimit <- round(lowerlimit,2)
+upperlimit <- round(upperlimit,2)
+
+lowerlimit
+upperlimit
+
+print(paste("I am 95% confident that the true median earnings of UVM students is within the range",lowerlimit, "to", upperlimit))
+
+```
+
+#### part c - CIs for medians versus means
+
+###### Answer the following questions in a one short paragraph:  
+
+###### Were your median point estimate and mean point estimate for earnings almost the same? 
+No, mean PE (7458.578) of earnings is about 1.4 times higher than the median PE (5 000). This shows that the mean is much more
+influenced by outliers than the median.
+
+###### Were your median CI and mean CI for earnings almost the same? 
+Not really, my mean CI of earnings was broader than the median confidence interval. It was 1.5 times broader than the median confidence interval.
+
+###### Were your median point estimate and mean point estimate for political almost the same? 
+They were similar, the median point estimate for political standing is 3 and the mean is roughly 3.4, having a difference of 1.13.
+
+###### Were your median CI and mean CI for political almost the same? 
+The median confidence interval for political standing is just a bit broader than the mean confidence interval, 1.09 times broader to be exact.
+
+###### Explain above why they are very different in one case, and not a lot different in the other.   (Hint:  make a histogram of the original data for earnings and for political leaning.)
+The political leaning values for mean and median is much more similar to the one compared to the income. I think one of the main reasons is because political has such a small range, from 1 to 10, while earnings varies has a bigger scope. The larger the scope the more the mean can vary and have outliers.
+
+``` {r Q4c}
+# histogram earnings
+ggplot(data = s, 
+       mapping = aes(x = Earnings, color = Earnings)) + 
+geom_histogram()
+
+# histogram political
+hist(s$Political)
+```
+

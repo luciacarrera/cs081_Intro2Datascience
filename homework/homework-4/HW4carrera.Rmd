@@ -1,0 +1,134 @@
+---
+title: "HW4 F21"
+author: "Lucía Carrera"
+date: "10/15/2021"
+output: html_document
+---
+
+## Setup
+
+*For this homework, you will investigate two new Association Rules and one already-done Rule, using the same data set with 9835 shoppers.*
+
+```{r setup, warning = FALSE, message = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+#  Load the tidyverse, or just dplyr
+library(tidyverse)
+
+#  Read in the large groceries data set.
+G <- read.csv('groceriesALL.csv')
+```
+jskdjflk
+
+```{r setup2}
+#  Print the first few lines of the first 5 variables in the data frame
+G %>%select(1:5) %>% head(5)
+
+#  Print the names of all of the variables in the data frame
+names(G)
+
+#  Setup -- 2 pts
+
+```
+
+*Type the needed quantities below.  For support, confidence and lift values, SHOW the numeric values that you divide to get the result (i.e., show your work).*
+
+## Rule 1  	{Yogurt} → {Whole Milk}
+
+- Number of times Yogurt purchased:  1372
+- Number of times Milk purchased:  2513
+- Number of times both purchased:  3885
+- Support of Yogurt:    /  = 
+- Support of Milk:   / = 
+- Support of both:    /  = 
+- Confidence of the Rule:   /  = 
+- Lift of the Rule:   /  = 
+
+```{r Rule1}
+# For each of the three rules, write R code to calculate all of the sums, as well as the support, confidence and lift values. Save the results as a data frame, as we did in class, and print the data frame.  You should already have code for Rule 1; DO include it here: 
+
+G%>% summarize(sumYogurt = sum(yogurt),
+               sumMilk = sum(whole.milk),
+               sumYogurtAndMilk = sumMilk + sumYogurt, 
+               N = n(),
+               supYogurt = sumYogurt / N,
+               supMilk = sumMilk / N,
+               supYogurtAndMilk = sumYogurtAndMilk / N,
+               confidence = supYogurtAndMilk / supYogurt,
+               lift = confidence / supMilk)
+# Code worth 1 pts; writing numbers worth 1 pts.  (did this in class)
+
+```
+
+
+## Rule 2  	{Whole Milk} → {Yogurt}
+
+- Number of times Milk purchased: 
+- Number of times Yogurt purchased:   
+- Number of times both purchased:     
+- Support of Milk:  /   =  
+- Support of Yogurt:   /   =  
+- Support of both:   /   =  
+- Confidence of the Rule:   /   =  
+- Lift of the Rule:   /   =  
+
+```{r Rule2}
+
+# Write similar R code below, for Rule 2. 
+
+# Code worth 2 pts; writing numbers worth 3 pts. 
+
+```
+
+
+
+## Rule 3	 {Cereals} → {Yogurt}
+
+- Number of times Cereals purchased:  
+- Number of times Yogurt purchased:  
+- Number of times both purchased: 
+- Support of Cereals:   /  = 
+- Support of Yogurt:   /  = 
+- Support of both: /  = 
+- Confidence of the Rule:   /  = 
+- Lift of the Rule:    /  = 
+
+```{r Rule3}
+
+# Write similar R code below, for Rule 3. 
+
+# Code worth 2 pts; writing numbers worth 3 pts. 
+
+```
+
+## Rule 4	 {___} → {Soda}
+
+*Choose a food that you believe might predict sale of Soda. Show code and results for the rule, as you did for the three rules above (fill in the name of the food in all of the ___).  Did you come up with a good rule to predict Soda purchases?  Explain briefly. *
+
+- Number of times ___ purchased:  
+- Number of times Soda purchased:  
+- Number of times both purchased: 
+- Support of ___:   /  = 
+- Support of Soda:   /  = 
+- Support of both:   /  = 
+- Confidence of the Rule:    /  = 
+- Lift of the Rule:    /  = 
+
+
+```{r Rule4}
+
+# Write similar R code below, for Rule 4. 
+
+# Code worth 2 pts; writing numbers worth 3 pts. 
+
+
+```
+## Question 1
+
+*Of Rule 2 and Rule 3, which is more useful in predicting yogurt purchases?   Explain how you know.  1 pt*
+
+
+## Question 2
+
+*Rule 1 and Rule 2 both look at yogurt and milk.  Did you get the same results for confidence and lift?  For each of confidence and lift, explain
+why it is the same or different for the two rules.  2 pts *

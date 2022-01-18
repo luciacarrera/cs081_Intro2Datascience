@@ -1,0 +1,96 @@
+---
+title: "MarketBasket"
+author: "Sheila Weaver"
+date: "10/7/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+g <- read.csv("Groceries.csv")
+
+G <- read.csv("groceriesALL.csv")
+
+library(tidyverse)
+
+
+```
+
+## Market basket code
+
+
+```{r market}
+
+tibble(g)
+
+BreadMilk <- g %>% summarise(sumMilk = sum(Milk),
+                sumBread = sum(Bread),
+                sumBoth = sum(Bread*Milk),
+                N = n(),
+                supMilk = sumMilk / N,
+                supBread = sumBread / N,
+                supBoth = sumBoth / N,
+                Confidence = supBoth / supBread,
+                Lift = Confidence / supMilk)
+
+BreadMilk
+
+FruitMilk <- g %>% summarise(sumMilk = sum(Milk),
+                sumFruit = sum(Fruit),
+                sumBoth = sum(Fruit*Milk),
+                N = n(),
+                supMilk = sumMilk / N,
+                supFruit = sumFruit / N,
+                supBoth = sumBoth / N,
+                Confidence = supBoth / supFruit,
+                Lift = Confidence / supMilk)
+
+FruitMilk
+
+
+
+```
+
+### Now with big groceries data set.
+
+#### {Butter} -> {Whole Milk}
+
+```{r bigG1}
+
+tibble(G)
+names(G)
+
+ButterMilk <- G %>% summarise(sumMilk = sum(whole.milk),
+                sumButter = sum(butter),
+                sumBoth = sum(butter*whole.milk),
+                sumBoth2 = sum(butter,whole.milk),
+                N = n(),
+                supMilk = sumMilk / N,
+                supButter = sumButter / N,
+                supBoth = sumBoth / N,
+                Confidence = supBoth / supButter,
+                Lift = Confidence / supMilk)
+
+ButterMilk
+
+
+
+```
+
+
+
+```{r cereal}
+CerealMilk <- G %>% summarise(sumMilk = sum(whole.milk),
+                sumCereal = sum(cereals),
+                sumBoth = sum(cereals*whole.milk),
+                N = n(),
+                supMilk = sumMilk / N,
+                supCereal = sumCereal / N,
+                supBoth = sumBoth / N,
+                Confidence = supBoth / supCereal,
+                Lift = Confidence / supMilk)
+
+CerealMilk
+```
+

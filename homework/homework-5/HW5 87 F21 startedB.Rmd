@@ -1,0 +1,91 @@
+---
+title: "HW#5 87 F21 part 2"
+author: "your name"
+date: "10/29/2021"
+output: html_document
+---
+
+## Question 2 -- Measurement data
+
+###  part a -- reading in the data and 'cleaning' it:   1 pt
+
+```{r setup, message = FALSE, warning = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+#  Load the tidyverse (or ggplot2 and dplyr) below:
+library(tidyverse)
+
+#  Download the MeasureF21.csv data; put it in your Stat/CS 087 project folder; read it like this:
+m <- read.csv('MeasureF21.csv', stringsAsFactors = TRUE,
+              na.strings = '')
+
+
+```
+
+```{r lookatdata}
+
+tibble(m)
+
+
+#  Data cleaning done in class must be included here:
+
+mnew <- m %>% filter(Response_id != 1199794,
+                     Head > 20) %>% 
+  mutate(Response_id = as.factor(Response_id),
+         RFoot = ifelse(RFoot > 20, RFoot/2.54, RFoot),
+         LFoot = ifelse(LFoot > 20, LFoot/2.54, LFoot))
+
+#  Print the data file (it's not too long), and make sure it is 'cleaned'.
+
+mnew
+
+#  Do a summary of the data
+summary(mnew)
+
+hist(mnew$Height)
+hist(mnew$Armspan)
+hist(mnew$Head)
+hist(mnew$LFoot)
+hist(mnew$RFoot)
+hist(mnew$Lhand)
+hist(mnew$Rhand)
+
+
+#  Something new.  Install the package psych, and try this:
+# library(psych)
+# pairs.panels(mnew[,3:9])
+
+```
+
+### part b: Plots with regression lines:   2 pts
+
+
+```{r plots, message=FALSE, warning=FALSE}
+# Using ggplot, create a scatterplot of Armspan by Height, adding a regression line to the plot.  Do remove the confidence band on the regression line.  Repeat with LFoot by Height, then with Lhand by Height.
+
+```
+
+
+### part c:  Linear regression equations:   2 pts
+
+```{r linearmodels}
+# Create the linear model object for Armspan by Height, as we did in class, and do a summary of the object.   Repeat with LFoot by Height, then Lhand by Height.
+
+```
+
+### part d:  Interpret slopes:   2 pts
+
+*Note the slope of each regression line, and summarize each slope, as we did in class: (For each….)  Write your answers in text in the white part right here:*   
+
+
+
+### part e:  Find correlation coefficients:   1 pt
+
+```{r}
+# Using dplyr, find the correlation coefficients for each relationship, using as much data as you can (i.e., don’t remove values that are missing for variables other than the two under consideration).  
+
+```
+
+### part f:  Interpret   2 pts
+
+*Summarize your findings, comparing the results for the three relationships.  What was the general phenomenon responsible for the relationships?  Which relationship is strongest? weakest?  Why would that be, in terms of what you know about human bodies?*

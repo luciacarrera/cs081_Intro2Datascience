@@ -1,0 +1,185 @@
+---
+title: "dplyr basics"
+author: "Sheila Weaver"
+date: "9/28/2021"
+output: html_document
+---
+
+```{r setup, warning = FALSE, message = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+#  Load the tidyverse
+library(tidyverse)
+
+#  Or, just load dplyr and ggplot2...
+```
+
+###  dplyr for data transformation
+### 5MV = Five Main Verbs
+
+####  1.  **filter** -- choosing rows
+
+```{r filter}
+#  Use the mpg data and keep only the cars with hwy mileage
+#  better than 40
+# filter keeps all of the rows that make the logical expression
+#  in the parentheses TRUE
+
+mpg40 <- mpg %>% filter(hwy > 40)
+tibble(mpg40)
+
+#   keep cars with hwy > 40  AND cty > 30
+#  either of these works:
+mpg3040 <- mpg %>% filter(hwy > 40 & cty > 30)
+tibble(mpg3040)
+mpg3040 <- mpg %>% filter(hwy > 40 , cty > 30)
+tibble(mpg3040)
+
+#  keep cars with hwy > 40 OR cty > 30
+mpg3040 <- mpg %>% filter(hwy > 40 | cty > 30)
+tibble(mpg3040)
+
+#  keep cars that are suv's
+suv <- mpg %>% filter(class == 'suv')
+tibble(suv)
+
+#  Keep all suvs and pickups
+suvpu <- mpg %>% filter(class == 'suv' | class == 'pickup')
+tibble(suvpu)
+#  does the same thing:
+suvpu <- mpg %>% filter(class %in% c('suv','pickup'))
+tibble(suvpu)
+```
+
+#### filtering out missing values
+
+```{r filtermiss}
+#  here's something we use a lot:
+#   filtering out the rows that have missing values for one variable:
+#  If hwy had missing values:
+mpgnomiss <- mpg %>% filter(!is.na(hwy))
+
+
+
+```
+
+####  2.  **mutate** -- use to create new variables and tranform old ones
+
+```{r mutate}
+#  Create a new variable, avemile, that is the average of city and highway mileage
+
+mpg2 <- mpg %>% mutate(avemile = (cty + hwy)/2)
+
+
+#  Confirm that it is in the data frame:
+tibble(mpg2)
+
+```
+
+####  3.  **group_by** -- put cases in groups for analysis
+
+```{r  group_by}
+#  Does the new data frame look different?
+#  NO!   need to tie group_by in with 'analysis'
+#   See below....
+mpgby <- mpg %>% group_by(class)
+tibble(mpgby)
+
+```
+
+#### 4. **summarise** -- calculate stats on variables (columns)
+
+```{r summarise}
+#  Find mean, median, max and min of highway mileage:
+mpg %>% summarise(meanhwy = mean(hwy),
+                  medhwy = median(hwy),
+                  maxhwy = max(hwy),
+                  minhwy = min(hwy),
+                  sampsize = n())
+
+
+#  NOTE:  IF there were missing values, you'd need to something like this:
+mpg %>% summarise(meanhwy = mean(hwy, na.rm = TRUE),
+                  medhwy = median(hwy, na.rm = TRUE),
+                  maxhwy = max(hwy, na.rm = TRUE),
+                  minhwy = min(hwy, na.rm = TRUE),
+                  sampsize = n())
+
+#  OR... you could also use filter to remove rows missing hwy:
+mpgnomiss <- mpg %>% filter(!is.na(hwy))
+mpgnomiss %>% summarise(meanhwy = mean(hwy),
+                  medhwy = median(hwy),
+                  maxhwy = max(hwy),
+                  minhwy = min(hwy),
+                  sampsize = n())
+
+
+
+#  Often useful to use with group_by.  Try redoing, grouping by class:
+mpg %>% group_by(class) %>% 
+                  summarise(meanhwy = mean(hwy),
+                  medhwy = median(hwy),
+                  maxhwy = max(hwy),
+                  minhwy = min(hwy),
+                  sampsize = n())
+
+#  Try redoing, grouping by class and drv:
+mpg %>% group_by(class, drv) %>% 
+                  summarise(meanhwy = mean(hwy),
+                  medhwy = median(hwy),
+                  maxhwy = max(hwy),
+                  minhwy = min(hwy),
+                  sampsize = n())
+```
+
+####  5. **arrange** -- arranges rows by one or more variables
+
+```{r}
+#  arrange mpg data frame in order from lowest to highest highway mileage:
+mpgarr <- mpg %>% arrange(hwy) 
+tibble(mpgarr)
+
+#  largest to smallest:
+mpgarr <- mpg %>% arrange(desc(hwy))
+tibble(mpgarr)
+
+#  Top 10 cars for low mileage
+mpg %>% arrange(desc(hwy)) %>% head(10)
+
+#  Could arrange by more variables.  Categorical variables are arranged in alphabetical order.
+
+```
+
+### Other useful verbs:
+
+####  **select** --  keep certain columns in the data
+
+```{r select}
+#  Keep only the variables manufacturer, class, hwy, cty:
+mpg4 <- mpg %>% select(manufacturer, class, hwy, cty)
+tibble(mpg4)
+
+#  Keep all of the variables *except* hwy:
+mpgnohwy <- mpg %>% select(-hwy)
+tibble(mpgnohwy)
+
+#  Using select might be useful for printing your data, or for saving a smaller version.
+
+```
+
+####  **sample_n** takes a random sample of rows in your data frame:
+
+```{r sample_n}
+#  print 4 randomly selected rows from the data:
+mpg %>% sample_n(4)
+
+#  Make a new data frame with only 20 rows:
+mpg %>% sample_n(20)
+
+#  One use of sample_n is when you have a huge data frame, and would like to try out graphs and analyses with a smaller set first, to keep down processing time.
+```
+
+#### Merging data frames with:   **left_join**, **right_join**, **inner_join**,  **full_join**
+
+####  Save this for later....
+

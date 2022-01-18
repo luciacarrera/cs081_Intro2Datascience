@@ -1,0 +1,94 @@
+---
+title: "dplyr practice -- NHANES data"
+author: "Sheila Weaver"
+date: "9/30/2021"
+output: html_document
+---
+
+```{r setup, warning = FALSE, message = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# load the tidyverse -- or ggplot2 and dplyr
+library(tidyverse)
+
+#  Install the NHANES package, and load it.
+library(NHANES)
+```
+
+##  Some dplyr practice 
+
+### Using the NHANES data, which comes from the CDC:  (https://www.cdc.gov/nchs/nhanes/index.htm)
+
+```{r  NHANESlook}
+
+#  We will look at the data frame called NHANES
+#  Do a dim(), names(), tibble()
+#  of the NHANES data frame, to get to know it.
+
+```
+
+### Some dplyr verb practice
+
+```{r NHANESverbs, warning = FALSE}
+#  We don't need all of the variables for our analysis below, 
+#  so, just to simplify things, create a new data frame, 
+#  called N, that only has the variables, 
+#    Gender, Age, HHIncome, Weight, Height, HealthGen, SleepHrsNight.
+
+N <- NHANES %>% select(Gender, Age, HHIncome, Weight, Height, HealthGen, SleepHrsNight)
+tibble(N)
+
+#  Do a scatterplot of Weight by Height
+ggplot(data = N, 
+       mapping = aes(y=Weight, x = Height)) +
+  geom_point(size=.8)
+#  Why the weird shape?
+
+#  Using arrange, sort the data by increasing height, and print the first 10 observations (the shortest 10)
+
+#  Heights are measured in centimeters, so the first few are
+#  less than a meter in height.  Hmmm, take a look at their age
+
+#  Using filter, create a new data frame, N2, that has only respondents
+#  18 years or older:
+
+
+#  Redo scatterplot of Weight by Height
+
+```
+
+###  NHANES summary stats
+
+```{r NHANESstats, warning = FALSE}
+#  Using N2 and summarise, find the min, median, max height and weight
+#  of respondents, mean sleep hours per night, and the number of respondents.  Hint:  might need na.rm = TRUE....
+N %>% arrange(Height) %>% head(10)
+
+
+# Notice that height is measured in centimeters and weight in kg.
+#  Use mutate to create two new variables: 
+#    Htinch as height in inches (divide values by 2.54),
+#    and Wtlbs as weight in pounds (multiply by 2.2). 
+#  Create a new data frame, called N3, with the new variables:
+# select is for rows, filter is for cols?
+N2 <- filter(Age>18)
+# Redo summarise above, using new variables
+
+
+# Redo same stats above, this time, with only median height and weight, mean sleep hours, and number of respondents.
+
+
+
+#  Find the same summary statistics, by general health (HealthGen)
+#  Note that some people are missing the variable HealthGen.
+#  Try filtering out the people who are missing it, and doing the summarise again:  
+#  (hint:  good opportunity to use !is.na()    )
+
+
+#  Find the same summary statistics, by household income (HHIncome), filtering out people who are missing income.
+
+#  Find the same summary statistics, by both gender and general health, filtering out missing values for health.
+
+
+```
+

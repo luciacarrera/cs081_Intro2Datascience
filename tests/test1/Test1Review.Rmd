@@ -1,0 +1,143 @@
+---
+title: "Test1 Review"
+author: "Sheila Weaver"
+date: "9/14/2021"
+output: html_document
+---
+
+```{r setup}
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+
+### Review the ideas outlined in the Reading for chapters 1 and 2.
+
+### Review these ideas from class:
+
+* Data Structures:  vectors, data frames are the two we've used so far. (Others include matrices, arrays, lists)
+  + Vectors: Height <- c(163, 133, 190)
+
+* Data Types in R:  Logical, Numeric, Character/String
+  + Logical: TRUE, FALSE
+  + Numeric: 163, 133, 190
+  + Character: 'Pass', 'Fail', 'Samantha'
+  
+* Quantitative vs Categorical data:  
+  + Quant:   age, earnings
+  + Categ:   year in school, response (yes/no)
+
+* R is case sensitive!!!
+
+* How are missing values represented in R?  
+  + NA (NOT IN QUOTES " !)
+  
+* How to remove missing values so mean(Height) will run?
+  + mean(Height, na.rm=TRUE)
+  
+* How do you get out of the + prompt?  
+  + esc (escape sequence)
+  + Correctly finish prompt
+
+* Functions and arguments (which are which below?):
+  + mean(Height) : mean = function, Height = argument
+  + sqrt(25) : sqrt = function, 25 = argument 
+  + mean(S$Earnings, na.rm=TRUE) : mean = function, ... = arguments
+
+
+* What is the meaning of   <-   in R
+  + Assign
+
+* Programs and Packages:  
+  + R is a program;  
+  + dplyr, ggplot2, tidyverse are packages
+
+* Installing and Loading:  How and when must you install/load packages?
+  1. Click on the “Packages” tab.
+  2. Click on “Install” next to Update.
+  3. Type the name of the package under “Packages (separate multiple with space or comma):” In this case, type ggplot2.
+  4. Click “Install.”
+  5. Load package by writing: library(ggplot2)
+
+
+###  Practice Writing Code
+
+#####  Enter these vectors in R:
+
+```{r entervectors}
+#  Animal:  cat, dog, pig, opossum, horse, human
+#  Sleep:  12.5, 10.1, 9.1, 18.0,  2.9, 8
+#  REM:  3.2, 2.9, NA, 4.9, 0.6, 1.9   (don't put the NA in quotes)
+#  Brain:  .026, .07, .18,.006, .655, 1.32
+#  Body:  3.3, 14, 86.2, 1.7, 521, 62
+
+Animal <- c('cat', 'dog', 'pig', 'opossum', 'horse', "human")
+Sleep <- c(12.5, 10.1, 9.1, 18.0,  2.9, 8)
+REM <- c(3.2, 2.9, NA, 4.9, 0.6, 1.9)
+Brain <- c(.026, .07, .18,.006, .655, 1.32)
+Body <- c(3.3, 14, 86.2, 1.7, 521, 62)
+```
+
+##### Stats and new vectors
+
+```{r vectorstats}
+#  Have R calculate the mean Body size 
+mean(Body)
+
+#  Have R calculate the mean REM sleep time
+mean(REM, na.rm=TRUE)
+
+#  Do a summary of the Body vector
+summary(Body)
+
+#  Create new vectors:  LBrain is the log of Brain and LBody is the log of Body
+#  Note:  You may use the function log() OR the functionlog10()
+LBrain <- c(log(Brain))
+LBody <- c(log(Body))
+
+```
+
+##### Some plots
+
+```{r plots}
+#  Try some plots:   Brain by Body (Y by X),  LBrain by LBody
+plot(x = Body, y = Brain)
+plot(x = LBody, y = LBrain)
+
+#  Also:  Sleep by Body, then Sleep by LBody
+plot(x = Sleep, y = Body)
+
+```
+
+##### Make and use a data frame
+
+```{r dataframe}
+#  Put the vectors in a data frame, called an:
+an <- data.frame(Animal, Body, Brain, LBody, LBrain, REM, Sleep)
+
+#  Because it is small, you can print the data frame to make sure it looks correct.
+print(an)
+
+#  Try these functions to examine the data frame further:  dim, head, tail, str, names.
+dim(an) # Retrieved the dimensions of an object
+head(an) # Is used to get the first parts of a vector, matrix, table, data frame or function
+tail(an) # Is used to get the last parts of a vector, matrix, table, data frame or function
+str(an) # Used for compactly displaying the internal structure of a R object.
+names(an) # Used to get or set the name of an Object.
+
+#  Remove the vectors from your environment, using rm()
+rm(Animal, Body, Brain, LBody, LBrain, REM, Sleep)
+   
+#  Do summary() on the whole data frame
+summary(an)
+
+#  Now, redo the plots using plot and an$
+plot(x = an$Body, y = an$Brain)
+plot(x = an$LBody, y = an$LBrain)
+plot(x = an$Sleep, y = an$Body)
+
+```
+
+
+
+
+

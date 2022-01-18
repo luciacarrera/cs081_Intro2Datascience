@@ -1,0 +1,128 @@
+---
+title: "More ggplot2 -- diamonds data"
+author: "Sheila Weaver"
+date: "9/21/2021"
+output: html_document
+---
+
+### Setup
+
+```{r setup, message = FALSE, warning=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# Load ggplot2 or the tidyverse when you want to use it:
+library(tidyverse)
+
+#  We'll use the package dplyr, so install it and load it.  Or just install and load the tidyverse:
+
+```
+
+### More graphs:  the diamonds data
+
+```{r look}
+#  We'll use the diamonds data frame, stored in ggplot2.  Take a look at it:
+tibble(diamonds)
+
+#  For more info, do help(diamonds) on the console
+```
+
+### Look at diamond weight (the variable, carat)
+
+The shape of the data: Skewed right, with peaks at 1, 2, .75, etc.
+
+```{r carat, warning = FALSE}
+#  histogram of carat  -- diamond weight
+ggplot(data = diamonds,
+       mapping = aes(x = carat)) +
+  geom_histogram(bins = 20, fill = 'darkgreen', color = 'blue')
+
+#  density plot -- smoothed histogram
+ggplot(data = diamonds,
+       mapping = aes(x = carat)) +
+  geom_density(fill = 'darkgreen', color = 'blue')
+```
+
+
+###  Look at categorical variables (cut, color, clarity)
+
+```{r bars}
+#  Make bar graphs of each:
+ggplot(data = diamonds,
+       mapping = aes(x = cut, fill = cut)) +
+  geom_bar()
+
+ggplot(data = diamonds,
+       mapping = aes(x = clarity, fill = clarity)) +
+  geom_bar()
+
+ggplot(data = diamonds,
+       mapping = aes(x = color, fill = color)) +
+  geom_bar()
+```
+
+### Bar graph with two variables: Cut and clarity
+
+```{r}
+#  Map clarity to the x axis, and cut to the fill aesthetic.
+ggplot(data = diamonds,
+       mapping = aes(x = clarity, fill = cut )) +
+  geom_bar()
+
+ggplot(data = diamonds,
+       mapping = aes(x = clarity, fill = cut )) +
+  geom_bar(position = 'fill')
+```
+
+###  Look at length and width of diamonds
+
+```{r lengthwidth}
+#  Scatterplot of y=width by x=length
+ggplot(data = diamonds,
+       mapping = aes(x = x, y = y)) +
+  geom_point()
+
+#  remove the outliers:
+
+d <- diamonds %>% filter(y < 20 & x > 3)
+ggplot(data = d,
+       mapping = aes(x = x, y = y)) +
+  geom_point()
+
+```
+
+###  boxplots of price by cut
+
+```{r pricecut}
+#  Do ideal cut diamonds cost more or less?   Why?
+ggplot(data = d,
+       mapping =aes(x = cut, y = price, fill = cut)) +
+  geom_boxplot()
+```
+
+### More graphs to figure it out....
+
+```{r why}
+#  Size of diamond by cut
+ggplot(data = d,
+       mapping = aes(x = cut, y = carat, fill = cut)) +
+  geom_boxplot()
+
+#  Scatterplot of price by carat
+ggplot(data = d,
+       mapping = aes(x = carat, y = price, color = cut)) +
+  geom_point(size = .5)
+
+d$ppc <- d$price / d$carat
+
+summary(d$ppc)
+ggplot(data = d, 
+       mapping = aes(x = ppc)) +
+  geom_histogram(color = 'white', fill = 'darkgreen')
+
+ggplot(data = d,
+       mapping = aes(x = cut, y = ppc, fill = cut)) +
+  geom_boxplot()
+```
+
+
+

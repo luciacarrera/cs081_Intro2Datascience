@@ -1,0 +1,138 @@
+---
+title: "More Coding Skills 087"
+author: "yourname"
+date: "Fall 2021"
+output: html_document
+---
+
+```{r setup, message = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+```
+
+###  Conditioning   --   if/then  
+
+#####  ifelse(logical expression, what to do if TRUE, what to do if FALSE)
+
+```{r conditioning}
+
+# Write ifelse to write Child or Adult, based on someone's age:
+age <- 20
+
+ifelse(age >= 18, 'Adult', 'Child')
+
+# Try with different values:
+age <- 10
+
+ifelse(age >= 18, 'Adult', 'Child')
+
+
+#  Try with a vector
+age <- c(20, 22, 12, 14, 15, 55, 99)
+
+ifelse(age >= 18, 'Adult', 'Child')
+
+
+#  To recode 99's to missing in the age vector
+age <- c(20, 22, 12, 14, 15, 55, 99)
+ifelse(age == 99, NA, age)
+
+#  What if Age were a vector in a data frame?
+roster <- data.frame(id = 1:7, 
+                     Age = c(20, 22, 12, 14, 15, 55, 99))
+roster
+
+roster$Age2 <- ifelse(roster$Age == 99, NA, roster$Age)
+roster
+
+#  OR
+
+newroster <- roster %>% mutate(Age2 = ifelse(age == 99, NA, Age))
+newroster
+
+```
+
+### Reading in a data frame with values that should be missing:
+
+```{r nastrings}
+#  Remember  Oswego.csv
+#   There are ? values used as missing values.  By default, R will
+#  make any numeric columns with question marks into character vectors.
+#  Here's how to make them NA's when reading the data in:
+os <- read.csv("Oswego.csv", na.strings = c('?'))
+tibble(os)
+
+#  Density plot of age
+
+ggplot(data = os,
+       mapping = aes(x = Age)) +
+  geom_density(fill = 'darkorchid')
+```
+
+
+### Changing variable names:
+
+```{r changename}
+m <- msleep  # make your own copy of msleep
+
+#  Look at the variable names, and identify the one you want to change.
+#  Note which column it is.  
+names(m)
+
+#  For example, if we want to change sleep_total, note that it is
+#  the sixth column.  To change the column name to st, do this:
+names(m)[6] <- 'st'
+
+names(m)
+```
+
+
+### Factors in R, and putting categories in the right order
+
+```{r factors}
+
+Year <- c('1st', 'Senior', 'Grad', 'Soph', 'Soph', 'Junior', '1st')
+
+summary(Year)
+table(Year)
+
+#  We can turn the character vector, Year, into a factor.  
+
+# Factors are stored in R as numbers, along with a list of what categories go with which numbers. Often, storing as a factor takes less space -- if there are many repeated values.  With factors, you can control the order of the categories more easily (e.g., the order they appear in graphs).  
+
+# (If there are not many repeated values (e.g., with names or IDs), it does not save space to use a factor -- leave as character.)
+
+#  Here, we turn Year into a factor, and specify the order of the categories for printing and plotting:
+
+Fyear <- factor(Year, 
+      level = c('1st', 'Soph', 'Junior','Senior','Grad'))
+summary(Fyear)
+
+#  If you have a variable that is character, or is a factor already, you can use the above strategy to get the categories in the order you want.
+
+```
+
+### Writing your own functions
+
+#### Celsius to Fahrenheit
+
+```{r ctof}
+#  Write a function to translate Celsius to 
+#  Fahrenheit.
+
+#  F <- C * 9/5 + 32
+
+
+
+```
+
+
+
+### Loops in R
+
+```{r loops}
+
+
+```
+

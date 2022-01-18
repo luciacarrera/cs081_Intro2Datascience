@@ -1,0 +1,76 @@
+---
+title: "Prediction Modeling"
+author: "yourname"
+date: "10/26/2021"
+output: html_document
+---
+
+```{r setup, message = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+#  load the tidyverse
+library(tidyverse)
+
+# read in the data and print as a tibble
+c <- read.csv("Crickets.csv")
+
+```
+
+### Plot the data with a regression line
+
+Describe the relationship here (Using points 1 through 4)
+
+```{r cricket, message = FALSE}
+#  Use ggplot to graph the data, adding a regression line with geom_smooth(method = 'lm')
+tibble(c)
+
+ggplot(data = c,
+      mapping = aes(x = Chirps, y = TempF)) +
+  geom_point()
+
+```
+
+### Find the regression line equation
+
+Once you have the model, write the slope here in terms of the problem:  For each increase ....
+
+```{r linearmodel}
+# Create the linear model for temperature by chirps.  Be sure to state the y variable first -- y ~ x.
+
+#  Print the model object
+
+
+#  Do names(CricketReg) to see what else is in the model object
+
+#  Do a summary of the model object
+```
+
+### Find the sample correlation coefficient
+
+``` {r corr}
+
+#  Print the correlation coefficient of temperature and chirps.  Try putting the temperature first and chirps second, then put in the reverse order:  
+
+#  For the correlation coefficient, it does not matter what order you put the variables in.
+
+#  If there were missing values in either of the variables, you could do this:
+```
+
+###  Another example:  Using mtcars data, look at mpg by car weight
+
+After you run the code below, describe the relationship here, using points 1 through 4.  Then state the slope in terms of the problem.
+
+```{r cardata, message = FALSE}
+# Plot mpg by wt here, with a regression line.
+ggplot(data = mtcars,
+       mapping = aes(x=wt,  y = mpg)) +
+  geom_point() +
+  geom_smooth(method = 'lm', se = FALSE)
+# Create and summarize the model object
+mo<-lm(mtcars$mpg ~ mtcars$wt)
+summary(mo)
+help(mtcars)
+#  Find the correlation coefficient
+
+```
+

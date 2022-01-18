@@ -1,0 +1,87 @@
+---
+title: "Kissing the Right Way"
+author: "Syourname"
+date: "11/9/2021"
+output: html_document
+---
+
+```{r setup}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Making up Sample Statistics
+
+Make up 10 possible outcomes of the study, and measure the variation. These are just guesses to get you thinking about how statistics might vary from study to study.
+
+```{r madeupstats}
+#   Create a vector with 10 possible outcomes of percentage kissing right for 124 couples:
+
+
+# Find the standard deviation of the  vector.
+
+
+#  This value is the STANDARD ERROR, because it is the standard deviation of a bunch of statistics.  Statistics are values that summarize studies.  Here, we are looking at statistics that are percentages.
+```
+
+### Now simulate outcomes of the study in a better way:  Bootstrap Samples
+
+For percentages, we use rbinom() to create bootstrap samples.
+
+```{r bootstrap}
+#  To simulate samples in a better way, "redo the study"  by randomly generating 124 couples kissing, with a probability of 80/124 of kissing right.
+#  Trials will be the number of couples who kiss right.
+
+
+#  Do many Trials by increasing n.  Just print the first few values.
+
+
+#  This creates the NUMBER of couples kissing Right,
+#  So make it a proportion.  Just print the first few values.
+
+
+#  Do table() and hist()
+
+```
+
+### Use the Standard Error to estimate the precision of the original study.
+
+```{r SE}
+#  The standard deviation of the Bootsrap Kiss Percentages (the SE) will help us assess the precision of the study of 124 couples.
+
+#  Two times the SE gives you the Margin of Error -- the ME
+
+
+```
+
+### Now, make a 95% Confidence Interval
+
+```{r CI}
+# The point estimate is the original percentage from the original data.
+
+#  The CI is the PE plus or minus the ME
+
+
+# print(paste("I'm 95% confident the true percentage of all couples who kiss on the right is captured in the interval from ", lowerlimit, " to ",upperlimit, "%"))
+```
+
+###  Vermonter poll example:
+
+```{r Vpoll}
+#  Simulate many bootstrap samples
+
+#  This creates the NUMBER of people saying sty in VT,
+#  So make it a proportion:
+
+
+#  Calculate the Standard Error
+
+
+#  Then the Margin of Error
+
+
+#  The point estimate was given to be 47
+
+#  State the CI:
+
+```
+

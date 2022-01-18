@@ -1,0 +1,134 @@
+---
+title: "Bechdel Test"
+author: "yourname"
+date: "10/19/2021"
+output: html_document
+---
+
+```{r setup, message = FALSE, warning = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+
+b <- read.csv("bechdel87.csv")
+tibble(b)
+
+```
+
+### Graphs of categorical variables:
+
+####  (Decade is also numeric, but we're treating it like a categorical variable just for this graph)
+
+```{r categorical}
+ggplot(data = b,
+       mapping = aes(x = Decade, color = Decade)) + 
+  geom_bar()
+
+ggplot(data = b,
+       mapping = aes(x = Btest, fill = Btest)) + 
+  geom_bar()
+
+#  Repeat for Btest5:
+ggplot(data = b,
+       mapping = aes(x= Btest5, fill = Btest5)) +
+  geom_bar()
+
+#  To find percentage:
+t <- table(b$Btest)
+prop.table(t)
+
+```
+
+###  Quantitative variables
+
+####  Film budget (in 2013 dollars)
+
+```{r budget, message = FALSE, warning = FALSE}
+ggplot(data = b,
+       mapping = aes(x = budget13)) +
+  geom_histogram(fill = 'darkgreen', color = 'white')
+```
+
+#### Domestic gross income from film (just money made in U.S.) (in 2013 dollars)
+
+```{r domgross, message = FALSE, warning = FALSE}
+ggplot(data = b,
+       mapping = aes(x = domgross13)) +
+  geom_histogram(fill = 'darkgreen', color = 'white')
+```
+
+
+#### International gross income (includes domestic income, too) (in 2013 dollars)
+# very skewed to the right
+
+```{r intgross, message = FALSE, warning = FALSE}
+ggplot(data = b,
+       mapping = aes(x = intgross13)) + # inflation is ...
+  geom_histogram(fill = 'darkgreen', color = 'white')
+```
+
+#### Crowd-sourced movie ratings.
+#### Scale is from 1 (worst) to 5 (best)
+# skewed to the left
+
+```{r ratings, message = FALSE, warning = FALSE}
+
+```
+
+### Relationships among variables:
+
+#### Bechdel Test by Decade
+
+```{r btestdecade}
+ggplot(data = b, 
+       mapping = aes(x=Btest, color = Btest)) +
+  geom_density() +
+  facet_grid(~averating)
+```
+
+#### Average Rating by whether film passed the test:
+
+```{r ratingbybt, messsage = FALSE, warning = FALSE}
+ggplot(data = b, 
+       mapping = aes(x=averating, fill = Btest)) +
+  geom_density() +
+  facet_wrap(~Btest, ncol=1)
+
+```
+
+#### Budget by whether film passed the test:
+
+```{r budgbybt, message = FALSE, warning = FALSE}
+
+
+```
+
+#### Domestic Gross by whether film passed the test:
+
+
+```{r domgrossbybt, message = FALSE, warning = FALSE}
+
+```
+
+####  Relationship between budget and gross earnings?
+
+```{r budgetearn, warning = FALSE, message = FALSE}
+
+```
+
+### Create a new variable that is the percentage profit:
+
+```{r percprofit}
+# b2 <- b %>% 
+#   mutate(domprofit13 = 
+#            100*(domgross13 - budget13)/budget13)
+```
+
+### Percent Profit by Btest:
+####  Better to just do the median, since median is better measure of Center when data is really skewed:
+
+```{r ppbybt}
+
+```
+
+####  Conclusion: 

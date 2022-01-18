@@ -1,0 +1,197 @@
+Response_id,Year,Earnings,Books,Relationship,Sleep,PhoneTime,Breakfast,Triangle,GPA
+1166955,2 Sophomore,15000,15,Yes,8,3,5,Sleep and Good Grades,3.5
+1167010,4 Senior,16000,4,Yes,7,4,0,Social Life and Good Grades,3
+1167023,3 Junior,6000,3,No,7,1,7,Social Life and Good Grades,3.7
+1167071,1st year,3000,25,Yes,8,3,5,Sleep and Good Grades,
+1167545,1st year,3000,2,No,8,4,0,Social Life and Good Grades,
+1168285,1st year,3500,2,No,6.5,6,7,Social Life and Good Grades,
+1168553,3 Junior,5500,4,Yes,8.5,2,7,Sleep and Good Grades,4
+1168749,4 Senior,8000,15,Yes,7,6,5,Social Life and Good Grades,3.6
+1168898,4 Senior,20000,8,No,5,8,3,Social Life and Good Grades,2.8
+1170080,5 Graduate,25000,3,Yes,6,3,2,Sleep and Good Grades,
+1170082,4 Senior,6000,20,No,9,3,6,Social Life and Good Grades,3.65
+1170095,4 Senior,4000,2,No,7.5,3,7,Sleep and Good Grades,3.22
+1170119,2 Sophomore,5000,3,No,6,6,1,Social Life and Good Grades,3.35
+1170121,4 Senior,6000,5,No,7.5,3,4,Social Life and Good Grades,3.8
+1170428,4 Senior,5000,2,Yes,8,3,7,Sleep and Good Grades,3.89
+1170508,3 Junior,2000,1,No,7.5,3,7,Social Life and Good Grades,3.7
+1170593,3 Junior,6000,5,Yes,6.5,2,5,Sleep and Good Grades,4
+1170744,1st year,4100,28,No,7,4,6,Sleep and Good Grades,
+1170957,5 Graduate,14000,1,Yes,8.5,3.5,7,Sleep and Good Grades,3.51
+1170958,4 Senior,4000,3,No,9,2,7,Social Life and Good Grades,3.85
+1170999,3 Junior,2000,0,No,8,2,7,Social Life and Good Grades,3.95
+1171203,4 Senior,5000,12,No,8,4,2,Social Life and Good Grades,3.8
+1171243,1st year,3000,5,No,6,4,0,Social Life and Good Grades,
+1171334,1st year,1500,30,No,6,4,6,Sleep and Good Grades,
+1171378,2 Sophomore,10000,50,Yes,8,4,7,Sleep and Good Grades,3.9
+1171397,4 Senior,10000,3,No,7.5,3.5,7,Sleep and Social Life,3.13
+1171425,3 Junior,2564,3,No,8,5,1,Social Life and Good Grades,3.54
+1171426,4 Senior,2000,1,Yes,6,7,3,Social Life and Good Grades,3.22
+1171438,3 Junior,0,1,Yes,8,3,7,Sleep and Good Grades,3.7
+1171445,4 Senior,15000,2,No,7.5,2,4,Social Life and Good Grades,
+1171448,3 Junior,7500,0,No,8,4,7,Social Life and Good Grades,3.6
+1171517,5 Graduate,20000,1,No,8,5,7,Sleep and Good Grades,3.92
+1171529,4 Senior,15000,4,Yes,7,5,7,Social Life and Good Grades,2.67
+1171593,3 Junior,4000,1,Yes,8,4,5,Social Life and Good Grades,3.8
+1171608,3 Junior,9000,0,Yes,5,5,2,Social Life and Good Grades,3.1
+1171629,4 Senior,6000,1,Yes,8,4,3,Sleep and Social Life,2.89
+1171635,4 Senior,2000,2,Sort of/ Not sure,7,4,5,Sleep and Good Grades,3.4
+1171641,3 Junior,2000,3,No,8,3,7,Social Life and Good Grades,3.67
+1171692,4 Senior,7500,4,No,8.5,2,7,Sleep and Good Grades,3.3
+1171706,3 Junior,10000,1,Yes,9,1,7,Social Life and Good Grades,3.56
+1171710,3 Junior,5000,4,No,9,4,7,Sleep and Good Grades,3.9
+1171727,4 Senior,3200,3,No,8,3,2,Social Life and Good Grades,2.8
+1171736,3 Junior,3000,2,No,6.5,4,7,Social Life and Good Grades,3.6
+1171738,3 Junior,3000,1,Yes,8,7,0,Social Life and Good Grades,2.85
+1171743,4 Senior,14000,12,No,8,4,6,Sleep and Good Grades,3.7
+1171792,3 Junior,0,0,No,8,8,0,Sleep and Good Grades,3.4
+1171794,3 Junior,6000,8,Sort of/ Not sure,5,4,7,Social Life and Good Grades,4
+1171805,5 Graduate,0,0,No,7,6,7,Sleep and Good Grades,3.93
+1171813,4 Senior,5000,3,No,8,4,4,Sleep and Good Grades,3.3
+1171814,,,1,No,8,5,7,,3.2
+1171818,4 Senior,6500,12,Yes,7,3,3,Social Life and Good Grades,3.4
+1171823,2 Sophomore,500,2,No,7,3,7,Social Life and Good Grades,3.5
+1171896,2 Sophomore,2000,3,No,8,3,4,Sleep and Good Grades,3.7
+1171903,4 Senior,10800,2,No,7.5,3,5,Social Life and Good Grades,2.9
+1171913,2 Sophomore,0,3,No,8.5,8,5,Sleep and Good Grades,
+1171929,4 Senior,3000,4,No,5,7,0,Social Life and Good Grades,
+1171936,3 Junior,30000,3,Yes,7.5,2,6,Social Life and Good Grades,3.7
+1171938,3 Junior,18000,5,Sort of/ Not sure,8,5,4,Social Life and Good Grades,3.85
+1171947,3 Junior,5500,0,No,6.5,4,7,Social Life and Good Grades,3.55
+1171948,4 Senior,0,20,No,7,4,5,Social Life and Good Grades,
+1171949,4 Senior,14000,10,Yes,7,3,1,Sleep and Good Grades,3.61
+1171955,4 Senior,4800,12,No,7.5,4,7,Social Life and Good Grades,3.85
+1171956,4 Senior,12000,0,Yes,8.5,3,7,Social Life and Good Grades,3.7
+1171958,4 Senior,1000,3,Yes,7,3,4,Sleep and Good Grades,
+1172022,2 Sophomore,10000,30,No,7,1,4,Social Life and Good Grades,3.83
+1172041,4 Senior,8000,10,Yes,8,5,0,Social Life and Good Grades,3.5
+1172050,2 Sophomore,750,2,Yes,8,4,5,Sleep and Good Grades,3.97
+1172099,4 Senior,10000,0,No,8,4,3,Social Life and Good Grades,2.9
+1172126,4 Senior,5000,1,No,7,3,4,Sleep and Good Grades,
+1172169,4 Senior,0,0,No,8,1,7,Sleep and Good Grades,2
+1172240,2 Sophomore,2000,2,No,7,2,7,Sleep and Social Life,3.62
+1172245,4 Senior,500,0,Yes,8,3.5,2,Sleep and Good Grades,3.38
+1172260,3 Junior,9000,0,Yes,6,4,7,Social Life and Good Grades,
+1172270,1st year,1500,6,Yes,7.5,3,5,Sleep and Good Grades,
+1172276,4 Senior,5500,10,Yes,8,2,3,Sleep and Good Grades,3.98
+1172429,4 Senior,11000,4,Yes,8,2,7,Sleep and Good Grades,2.67
+1172461,3 Junior,5000,2,No,7.5,4,7,Social Life and Good Grades,3.69
+1172462,4 Senior,3000,2,No,7,5,7,Social Life and Good Grades,3.71
+1172475,4 Senior,30000,0,Yes,7,1,4,Sleep and Good Grades,3.6
+1172476,4 Senior,24000,0,Yes,7,4,2,Sleep and Good Grades,3.03
+1172491,4 Senior,1400,19,No,11,3,3,Sleep and Good Grades,2.8
+1172581,1st year,5000,2,No,7,4,2,Social Life and Good Grades,
+1172589,2 Sophomore,9000,2,Yes,8,5,7,Social Life and Good Grades,3.8
+1172592,2 Sophomore,6000,5,No,6,2,3,Sleep and Good Grades,3
+1172594,4 Senior,3000,6,No,6.5,3,7,Social Life and Good Grades,3.8
+1172595,1st year,6000,3,No,7,2,7,Social Life and Good Grades,
+1172597,,,0,No,9,4,6,Sleep and Social Life,2.8
+1172598,1st year,0,3,No,7.5,5,6,Sleep and Good Grades,
+1172606,3 Junior,640,2,Yes,7.5,1,5,Sleep and Good Grades,3.68
+1172660,4 Senior,7000,4,Yes,7.5,6,7,Sleep and Good Grades,3.78
+1172680,4 Senior,24000,3,Yes,4,6,2,Social Life and Good Grades,2.2
+1172733,3 Junior,7000,12,Sort of/ Not sure,5,4,5,Sleep and Good Grades,2.9
+1172740,3 Junior,5000,4,No,8,2,7,Social Life and Good Grades,2.7
+1172874,4 Senior,7000,12,Sort of/ Not sure,8,2,7,Social Life and Good Grades,3.6
+1172889,3 Junior,1851,3,No,9,3.5,0,Sleep and Good Grades,2.5
+1172890,3 Junior,1600,1,No,7.5,2,7,Social Life and Good Grades,3.5
+1172900,3 Junior,13000,0,No,6,4,0,Sleep and Good Grades,2.7
+1172951,2 Sophomore,5000,0,No,7,0.5,0,Social Life and Good Grades,
+1173035,4 Senior,12000,3,No,6,2,0,Social Life and Good Grades,2.84
+1173040,4 Senior,0,0,Yes,8,2,5,Sleep and Good Grades,3.3
+1173134,3 Junior,8000,2,Yes,8,4,4,Social Life and Good Grades,
+1173265,4 Senior,20000,8,No,4,8,3,Social Life and Good Grades,2.8
+1173323,3 Junior,5500,2,Sort of/ Not sure,7,3.5,7,Sleep and Good Grades,3.75
+1173403,4 Senior,0,20,No,10,4,7,Sleep and Good Grades,3.1
+1173416,4 Senior,2000,1,No,8,8,0,Social Life and Good Grades,3.81
+1173462,4 Senior,0,100,No,6,5,5,Social Life and Good Grades,3.1
+1173581,4 Senior,12000,2,Yes,7,3,5,Sleep and Good Grades,3.9
+1174266,3 Junior,3500,0,No,8,4,2,Social Life and Good Grades,3.14
+1166968,2 Sophomore,6000,10,Yes,7,3.5,4,Social Life and Good Grades,3.82
+1167003,1st year,0,2,Yes,7,3,5,Social Life and Good Grades,
+1167007,4 Senior,10000,10,Yes,7,5,6,Sleep and Social Life,3.1
+1167042,3 Junior,0,8,No,8,3,0,Sleep and Social Life,3.45
+1167086,3 Junior,3000,2,No,7.5,4.5,5,Social Life and Good Grades,3.75
+1167858,4 Senior,3000,7,No,7,5,6,Social Life and Good Grades,3.5
+1168035,3 Junior,2000,2,No,4,2,2,Social Life and Good Grades,3.2
+1168597,4 Senior,5000,1,No,5.5,2,3,Social Life and Good Grades,2.6
+1168613,4 Senior,3000,8,Sort of/ Not sure,8,2,7,Sleep and Good Grades,3.97
+1168794,1st year,2000,3,No,7,3,0,Social Life and Good Grades,
+1169843,1st year,3000,4,No,7.5,3,4,Social Life and Good Grades,
+1169901,4 Senior,5000,10,Yes,8.5,1.5,7,Sleep and Good Grades,3.82
+1170074,3 Junior,4000,26,Yes,9,2,7,Sleep and Good Grades,3.2
+1170101,2 Sophomore,7000,5,No,8,4,4,Social Life and Good Grades,4
+1170172,4 Senior,10000,15,No,7,3,7,Sleep and Social Life,3.5
+1170177,5 Graduate,25000,15,Yes,8,3,7,Social Life and Good Grades,4
+1170186,3 Junior,3000,1,No,6,5,5,Social Life and Good Grades,3.69
+1170241,4 Senior,500,3,Yes,8,5,7,Sleep and Good Grades,3.63
+1170566,2 Sophomore,5000,4,Yes,7,9,7,Sleep and Good Grades,3.93
+1170648,2 Sophomore,3500,5,No,8,4,6,Social Life and Good Grades,3.72
+1170684,3 Junior,500,0,No,7,3,1,Sleep and Good Grades,3.4
+1170694,4 Senior,500,8,No,6,5,7,Social Life and Good Grades,
+1170778,4 Senior,5307,8,No,7,3,6,Social Life and Good Grades,3.05
+1170792,4 Senior,6000,4,No,8,3,7,Social Life and Good Grades,3.67
+1170908,2 Sophomore,2500,1,No,7,2,7,Social Life and Good Grades,3.75
+1170937,4 Senior,120000,5,No,6,3,2,Social Life and Good Grades,3
+1170952,1st year,0,8,No,8,3,4,Social Life and Good Grades,
+1170953,1st year,500,0,No,7,4,7,Sleep and Good Grades,3.67
+1170998,2 Sophomore,4000,2,Yes,7,1.5,7,Sleep and Good Grades,3.9
+1171004,3 Junior,8000,5,No,8,2.5,6,Social Life and Good Grades,3.5
+1171012,3 Junior,2000,2,No,8,7,3,Social Life and Good Grades,3.6
+1171115,1st year,2000,5,Sort of/ Not sure,7,1,7,Sleep and Social Life,
+1171242,4 Senior,7000,0,Yes,8.5,3,3,Social Life and Good Grades,3.79
+1171359,2 Sophomore,8000,4,Yes,6.5,5,4,Sleep and Good Grades,
+1171398,3 Junior,3600,2,No,6,4,7,Sleep and Good Grades,3.65
+1171411,1st year,1000,3,No,8,5,7,Sleep and Good Grades,
+1171418,3 Junior,7000,7,No,6,4,5,Social Life and Good Grades,3.57
+1171433,3 Junior,4000,2,No,7.5,3,5,Sleep and Good Grades,3.85
+1171436,4 Senior,4700,2,No,7,5,6,Social Life and Good Grades,3.3
+1171456,5 Graduate,10000,1,Yes,6,2,1,Social Life and Good Grades,
+1171536,1st year,9500,0,No,7.5,4,5,Social Life and Good Grades,
+1171609,4 Senior,7000,10,No,8,8,7,Sleep and Good Grades,3.51
+1171614,4 Senior,10000,5,Yes,7.5,4,7,Sleep and Good Grades,3.98
+1171637,3 Junior,6000,2,Sort of/ Not sure,8.5,5,7,Social Life and Good Grades,3.4
+1171652,4 Senior,20000,5,No,6,7,7,Social Life and Good Grades,3.91
+1171663,2 Sophomore,5000,0,No,8,4,7,Sleep and Good Grades,3.9
+1171726,4 Senior,3000,4,Yes,7,2,3,Social Life and Good Grades,2.98
+1171728,3 Junior,3000,0,No,8,3,7,Social Life and Good Grades,3.62
+1171755,4 Senior,1500,2,Yes,8,1.5,7,Sleep and Good Grades,3.5
+1171758,3 Junior,5000,25,Sort of/ Not sure,7,4,5,Social Life and Good Grades,2.8
+1171760,2 Sophomore,6000,2,Yes,7,2,3,Social Life and Good Grades,
+1171790,4 Senior,0,12,No,8,6,7,Social Life and Good Grades,3.52
+1171864,3 Junior,3500,2,Sort of/ Not sure,7,3,4,Social Life and Good Grades,3.88
+1171866,5 Graduate,29000,0.5,Yes,7.5,3.5,6,Sleep and Social Life,3.4
+1171868,3 Junior,10000,2,Yes,8,4,7,Social Life and Good Grades,3.7
+1171870,1st year,2500,4,No,8,5,7,Sleep and Good Grades,
+1171874,4 Senior,10000,0,Yes,8,4,7,Sleep and Good Grades,3.8
+1171904,3 Junior,6000,5,Yes,7,6,5,Sleep and Good Grades,3.97
+1171906,4 Senior,8000,0,Yes,8,2,4,Social Life and Good Grades,3.93
+1171912,2 Sophomore,5500,75,No,8,6,5,Social Life and Good Grades,
+1171931,4 Senior,300,5,Yes,8,4,7,Sleep and Good Grades,3.4
+1171935,4 Senior,10000,3,Yes,6.5,1,7,Social Life and Good Grades,3.82
+1171953,4 Senior,1000,4,Yes,5.5,8,2,Sleep and Good Grades,
+1172021,3 Junior,50000,3,Yes,9,4,5,Social Life and Good Grades,3.33
+1172048,4 Senior,5000,10,No,8,2,5,Social Life and Good Grades,3.35
+1172053,4 Senior,2000,3,No,6.5,3,7,Social Life and Good Grades,3.8
+1172054,4 Senior,2000,3,No,6.5,3,7,Social Life and Good Grades,3.8
+1172093,3 Junior,4000,2,Yes,7,3,3,Social Life and Good Grades,3.2
+1172203,4 Senior,12000,4,Sort of/ Not sure,7,2,3,Sleep and Good Grades,2.36
+1172424,1st year,12000,2,No,7,7,2,Social Life and Good Grades,
+1172428,4 Senior,2000,7,Yes,8,4,3,Sleep and Good Grades,2.4
+1172575,1st year,300,2,No,6,6,4,Social Life and Good Grades,
+1172585,2 Sophomore,5000,0,Yes,7,3,3,Social Life and Good Grades,3.4
+1172590,3 Junior,3000,1,No,7,4,6,Social Life and Good Grades,3.91
+1172591,4 Senior,8000,1.5,No,7.5,2,7,Social Life and Good Grades,3.4
+1172596,4 Senior,5000,0,No,7,3,7,Social Life and Good Grades,3.79
+1172599,2 Sophomore,0,5,No,8,3,2,Social Life and Good Grades,
+1172624,4 Senior,500,4,No,8,4,6,Sleep and Social Life,1.9
+1172633,3 Junior,4000,15,No,8.5,3,7,Sleep and Good Grades,3.41
+1173135,4 Senior,5000,0,No,6,2,6,Social Life and Good Grades,3.46
+1173306,2 Sophomore,7500,0,No,7,5,4,Social Life and Good Grades,
+1173601,3 Junior,1000,0,Yes,8,2,7,Sleep and Good Grades,3.01
+1173690,3 Junior,1000,0,No,8,3,4,Social Life and Good Grades,3.44
+1173787,4 Senior,5500,1,Yes,8,2,7,Sleep and Social Life,3.44
+1173795,3 Junior,2000,0,No,7,6,3,Sleep and Good Grades,
+1174321,1st year,3000,1,Sort of/ Not sure,7,6,5,Social Life and Good Grades,
+1174322,4 Senior,300,10,Yes,9,4,7,Sleep and Social Life,3.62
+1174326,4 Senior,20000,1,Sort of/ Not sure,10,4,2,Social Life and Good Grades,2.85

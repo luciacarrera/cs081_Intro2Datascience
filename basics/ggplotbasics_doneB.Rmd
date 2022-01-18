@@ -1,0 +1,172 @@
+---
+title: "Introducing ggplot2 package"
+author: "Sheila Weaver"
+date: "9/9/2021"
+output: html_document
+---
+
+## Setup
+
+```{r setup, message = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+#  Install the tidyverse package, if you didn't already.  
+#  Only install it once, like this:
+
+#  Go to bottom right pane, click Packages,
+#  then click Install, then type tidyverse
+#  in the blank in the middle, click Install.
+
+#  If you have problems with the tidyverse, install and load ggplot2 instead.
+#  (It is a package within the tidyverse package).
+
+# Load your package when you want to use it:
+library(tidyverse)
+
+#  We'll use the data frame mpg, stored in 
+#  the ggplot2 package.  Take a look at it:
+tibble(mpg)
+```
+
+### Scatterplots
+
+```{r scatter}
+#   y = Highway mileage BY x = engine size (displ)
+#  We'll use the mpg data, and we'll map hwy to the y axis,
+#  and displ to the x axis. 
+
+ggplot(data = mpg,
+       mapping = aes(x = displ, y = hwy)) +
+  geom_point()
+
+```
+
+### Scatterplots with another aesthetic
+
+```{r scatterby}
+
+#  Let's use the variable class of vehicle
+
+#  color
+ggplot(data = mpg,
+       mapping = aes(x = displ, y = hwy, color = class)) +
+  geom_point()
+
+#  size 
+ggplot(data = mpg,
+       mapping = aes(x = displ, y = hwy, size = class)) +
+  geom_point()
+
+#  alpha -- what is it?
+#      shade, opacity, transparency, gradient, grayscale
+ggplot(data = mpg,
+       mapping = aes(x = displ, y = hwy, alpha = class)) +
+  geom_point()
+
+#  shape
+ggplot(data = mpg,
+       mapping = aes(x = displ, y = hwy, shape = class)) +
+  geom_point()
+
+```
+
+### Using same aesthetics as 'settings'
+
+```{r settings}
+
+#  Could change size of points, using size as a 'setting':
+#   Highway mileage BY engine size (displ)
+ggplot(data = mpg,
+       mapping = aes(x = displ, y = hwy)) +
+  geom_point()
+
+ggplot(data = mpg,
+       mapping = aes(x = displ, y = hwy)) +
+  geom_point(size = 2)
+
+
+#  Also try color and alpha
+ggplot(data = mpg,
+       mapping = aes(x = displ, y = hwy)) +
+  geom_point(size = 2, color = 'purple')
+
+ggplot(data = mpg,
+       mapping = aes(x = displ, y = hwy)) +
+  geom_point(size = 2, color = 'purple', alpha = .5)
+
+#  A common mistake:
+ggplot(data = mpg,
+       mapping = aes(x = displ, y = hwy, color = 'purple')) +
+  geom_point()
+
+
+
+
+```
+
+### Scatterplot with facets
+
+```{r scatterfacet}
+#  Another different option is to make
+#  different facets for each category:
+ggplot(data = mpg,
+       mapping = aes(x = displ, y = hwy, color = class)) +
+  geom_point() +
+  facet_wrap(~ class)
+
+#  In R, the ~ means 'BY'
+
+```
+
+###  Adding extras:
+
+```{r extras}
+
+#  Adding titles, labels, themes
+ggplot(data = mpg,
+       mapping = aes(x = displ, y = hwy, color = class)) +
+  geom_point(size = 2) +
+  labs(title = "Highway mileage by Engine Size",
+       x = "Engine Size (displacement)",
+       y = "Highway mpg",
+       color = "Type of Car") +
+  theme_bw()
+
+```
+
+### Histograms
+
+```{r hist}
+#  histogram of hwy
+
+ggplot(data = mpg,
+       mapping = aes(x = hwy)) +
+  geom_histogram(color = 'purple', fill = 'pink')
+
+ggplot(data = mpg,
+       mapping = aes(x = hwy)) +
+  geom_histogram(color = 'white', fill = 'purple')
+```
+
+### Density plot
+
+```{r density}
+
+ggplot(data = mpg,
+       mapping = aes(x = hwy)) +
+  geom_density(color = 'white', fill = 'purple')
+
+```
+
+### Boxplots
+
+```{r boxplot}
+#   hwy by class
+ggplot(data = mpg,
+       mapping = aes(x = class, y = hwy, fill = class)) +
+  geom_boxplot()
+
+```
+
+
+

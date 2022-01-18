@@ -1,0 +1,132 @@
+---
+title: "dplyr basics"
+author: "Sheila Weaver"
+date: "9/28/2021"
+output: html_document
+---
+
+```{r setup, warning = FALSE, message = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+#  Load the tidyverse
+library(tidyverse)
+
+#  Or, just load dplyr and ggplot2...
+```
+
+###  dplyr for data transformation
+### 5MV = Five Main Verbs
+
+####  1.  **filter** -- choosing rows
+
+```{r filter}
+tibble(mpg)
+
+# Use the mpg data and keep only the cars with hmy mileage better than 40
+mpg40 <- mpg %>% filter(hwy > 40)
+tibble(mpg40)
+
+# keep cars with hwy > 40 AND cty > 30 
+# either commands work 
+mpg3040 <- mpg %>% filter(hwy > 40 & cty > 30)
+tibble(mpg3040)
+mpg3040 <- mpg %>% filter(hwy > 40, cty > 30)
+tibble(mpg3040)
+
+# keep cars with hwy > 40 OR cty > 30 
+mpg3040 <- mpg %>% filter(hwy > 40 | cty > 30)
+tibble(mpg3040)
+
+# keep cars that are suv's
+mpgSuv <- mpg %>% filter(class == "suv")
+tibble(mpgSuv)
+
+# keep all suvs and pickups
+suvpu <- mpg  %>% filter(class == "suv" |class == "pickup")
+tibble(suvpu)
+# does the same thing:
+suvpu <- mpg  %>% filter(class %ini% c('suv','pickup'))
+tibble(suvpu)
+```
+
+#### filtering out missing values
+
+```{r filtermiss}
+#  here's something we use a lot:
+#   filtering out the rows that have missing values for one variable:
+mpgnomiss <- mpg %>% filter(!is.no(hwy)) # takes away the lines that have missing hwy
+
+```
+
+####  2.  **mutate** -- use to create new variables and tranform old ones
+
+```{r mutate}
+#  Create a new variable, avemile, that is the average of city and highway mileage
+
+#  Confirm that it is in the data frame:
+
+
+```
+
+####  3.  **group_by** -- put cases in groups for analysis
+
+```{r  group_by}
+#  Does the new data frame look different?
+
+
+```
+
+#### 4. **summarise** -- calculate stats on variables (columns)
+
+```{r summarise}
+#  Find mean, median, max and min of highway mileage:
+
+#  NOTE:  IF there were missing values, you'd need to something like this:
+
+#  OR... you could also use filter to remove rows missing hwy:
+
+#  Back to the original -- now add the function n() to find the total number of observations.
+
+#  Often useful to use with group_by.  Try redoing, grouping by class:
+
+#  Try redoing, grouping by class and drv:
+```
+
+####  5. **arrange** -- arranges rows by one or more variables
+
+```{r}
+#  arrange mpg data frame in order from lowest to highest highway mileage:
+
+#  largest to smallest:
+
+#  Could arrange by more variables.  Categorical variables are arranged in alphabetical order.
+
+```
+
+### Other useful verbs:
+
+####  **select** --  keep certain columns in the data
+
+```{r select}
+#  Keep only the variables manufacturer, class, hwy, cty:
+
+#  Keep all of the variables *except* hwy:
+
+#  Using select might be useful for printing your data, or for saving a smaller version.
+
+```
+
+####  **sample_n** takes a random sample of rows in your data frame:
+
+```{r sample_n}
+#  print 4 randomly selected rows from the data:
+
+#  Make a new data frame with only 20 rows:
+
+#  One use of sample_n is when you have a huge data frame, and would like to try out graphs and analyses with a smaller set first, to keep down processing time.
+```
+
+#### Merging data frames with:   **left_join**, **right_join**, **inner_join**,  **full_join**
+
+####  Save this for later....
+

@@ -1,0 +1,14 @@
+filter
+select
+arrange
+summarize
+mutate
+group by
+
+what verb would you use to 
+1) select - columns
+2) arrange - organize your data in numeric order
+3) summarize - ??
+4) group by - putting your data, organizing it by data
+5) filter - choosing different rows
+6) mutate - create a new variable
